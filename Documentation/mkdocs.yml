@@ -1,0 +1,7 @@
+site_name: Hacking Doméstico
+theme:
+    name: "material"
+
+nav:
+    - "Index": index.md
+
