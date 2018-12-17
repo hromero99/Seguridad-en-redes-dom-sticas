@@ -4,4 +4,6 @@ theme:
 
 nav:
     - "Index": index.md
+    - "Introducción": introduccion.md
+    - "Recolección de información": informationGathering.md
 
