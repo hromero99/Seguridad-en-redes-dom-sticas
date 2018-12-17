@@ -39,3 +39,10 @@ Como alternativa para este escenario hemos decidio utilizar una biblioteca de Py
 
 ¿Qué pretendemos lograr con este script? La respuesta es muy simple, podemos estar monitoreando la cuenta de la victima para conocer sus publicaciones, con estas publicaciones podremos obtener información como horarios de salida, dispositivos que utiliza entre otras.
 
+Se ha realizado 3 versiones del script:
+
+1. Recolección de información de usuario
+2. Almacenamiento de los tweets en una base de datos
+3. Notificación por correo electrónico de los tweets
+
+En escenarios mas complejos, podemos utilizar librerias de procesamiento de lenguaje natural (NTPL) entre otras para poder extraer la máxima información posible, sin embargo, para este ejemplo las obviaremos.
