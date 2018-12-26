@@ -5,5 +5,7 @@ theme:
 nav:
     - "Index": index.md
     - "Introducción": introduccion.md
+    - "Preparando el arsenal": raspberry.md
     - "Recolección de información": informationGathering.md
-
+    - "Analizando las redes Wifi": vulnerabilities.md
+    - "Ataques en redes Wifi": crackingWifi.md
