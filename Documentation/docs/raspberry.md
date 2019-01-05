@@ -36,4 +36,19 @@ Cuando hayamos escogido el sistema operativo para trabajar, el siguiente paso se
 
 Cuando obtengamos la imagen de Kali Linux, tendremos que descomprimirla, generalmente viene comprimida con xz. Pasaremos a descompirmir la imagen usando:
 
-    $ xz
+    $ xz --decompress kali-linux-raspberrypi.img.xz
+
+Una vez descomprimida la imagen pasarémos a montarla dentro de la tarjeta SD para usarla posteriormente en la raspberry, para ello usaremos la herramienta dd:
+
+    $ dd if=kali-linux-raspberrypi.img of=/dev/sdbX status=progress
+
+Una vez haya finalizado _dd_ podremos iniciar la raspberry y comenzar con la configuración.
+
+## Creando un punto de Acceso propio
+
+Con el fin de utilizar la raspberry de forma remota y sin conexión a internet (puesto que no tenemos esta garantizada), pasaremos a crear un punto de acceso haciendo uso de una antena Wifi (en el caso del modelo raspberry pi 3 puede ser la interna).
+Para facilitar el trabajo usaremos un script de configuración que nos automatiza la instalación de un servidor DHCP (dnsmasq) y Hostapd ambos necesarios para la correcta instalación y funcionamiento del punto de acceso.
+
+Podemos encontrar el script en el [repositorio de Github](https://github.com/cyberh99/raspberryAP)
+
+Con esto conseguimos tener acceso por SSH haciendo uso de nuestro móvil o ordenador independientemente de la conexión a internet. Puesto que estaremos trabajando posteriormente con redes wifi es recomendable tener 2 antenas independientes para realizar los ataques descritos en el laboratorio.
