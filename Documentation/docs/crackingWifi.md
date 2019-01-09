@@ -28,10 +28,10 @@ Dentro de la salida extensa de este comando tenemos la categoria _Supported inte
 Una vez comprobado si la tarjeta es compatible, pasaremos a ponerla el modo monitor. 
 
 ```Aircrack-ng requiere ser ejecutado como root```
-```  Para los ejemplos de comandos se utilizará la interfaz wlp3s0, esto debe de ser cambiado según la interfaz```
+```  Para los ejemplos de comandos se utilizará la interfaz wlan0, esto debe de ser cambiado según la interfaz```
 
 
-    $ root@HowIsCoding:~$  airmon-ng check wlp3s0
+    $ root@HowIsCoding:~$  airmon-ng check wlan0
 
     Found 5 processes that could cause trouble.
     Kill them using 'airmon-ng check kill' before putting
@@ -49,9 +49,49 @@ Antes de poner la interfaz en modo monitor debemos de realizar una comprobación
 
 Para matar estos procesos simplemente usamos la herramienta airmon-ng para matarlos:
 
-    $ airmon-ng kill wlp3s0
+    $ airmon-ng check kill
 
 Cuando tenemos los procesos que entraban en conflicto matados podemos pasar a poner la interfaz en modo monitor, para ello usaremos la misma herramienta:
 
-    $ airmon-ng start wlp3s0
+    $ airmon-ng start wlan0
+
+    PHY	Interface	Driver		Chipset
+
+    phy0	wlan0		ath9k_htc	Atheros Communications, Inc. AR9271 802.11n
+
+		(mac80211 monitor mode vif enabled for [phy0]wlan0 on [phy0]wlan0mon)
+		(mac80211 station mode vif disabled for [phy0]wlan0)
+
+Como podemos ver en la salida del comando airmon-ng se ha habilitado el modo monitor de nuestra tarjeta. Para operar con el momo monitor se habilita la interfaz wlan0mon, con la que trabajaremos a continuación.
+
+## Escaneando redes wifi
+
+Una vez con nuestra interfaz en modo monitor pasaremos a realizar un escaneo de todas las redes wifi que estan en nuestro entorno, para ello utilizaremos la herramienta _airodump-ng_
+
+    $ airodump-ng wlan0mon
+
+        CH  2 ][ Elapsed: 36 s ][ 2019-01-07 14:58                                         
+                                                                                                                                                                
+    BSSID              PWR  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
+                                                                                                                                                                
+    00:14:5C:84:4D:42  -44       14        5    1   6  54 . WPA2 TKIP   PSK  wireless.py                                                                        
+    48:8D:36:BC:25:A2  -63       14        3    0   1  130  WPA2 CCMP   PSK  Orange-25A0                                                                        
+                                                                                                                                                                
+    BSSID              STATION            PWR   Rate    Lost    Frames  Probe                                                                                   
+                                                                                                                                                                
+    48:8D:36:BC:25:A2  10:00:00:8A:95:26  -21    0 - 6e     0        4                                                                                           
+``` La terminilogía usada en el resultado de este comando esta explicada en el apartado anterior``
+Es necesario examinar el resultado de esta herramienta y explicar a groso modo su funcionamiento.
+
+Airodump-ng realizará un escaneo por todos los canales de radio referentes a las redes wifi, buscando las diferentes señales (ya que permite capturar paquetes mediante el modo monitor). También detecta los clientes que existen en esas redes, así como sus direcciones mac y los puntos de acceso a los que están conectados.
+
+Con este resultado podemos enfocarnos en un determinado punto de acceso, sin embargo, podemos realizar una captura de todo el tráfico y almacenarla en un archivo _pcap_ para su posterior análisis con _Wireshark_ u otra herramienta.
+
+### Capturando paquetes del objetivo
+
+Una vez hemos identificado los datos de la red objetivo, pasaremos a capturar información sobre ese punto en concreto (obviando el resto de redes).
+
+    $ airodump-ng --bssid 00:14:5C:84:4D:42 --essid wireless.py -c 6 -w wirelessPY wlan0mon
+
+Este comando nos dará como resultado un paquete _cap_(wirelessPY.cap) para analizar posteriormente.
 

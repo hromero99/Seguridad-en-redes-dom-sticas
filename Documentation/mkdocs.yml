@@ -9,3 +9,4 @@ nav:
     - "Recolección de información": informationGathering.md
     - "Analizando las redes Wifi": vulnerabilities.md
     - "Ataques en redes Wifi": crackingWifi.md
+    - "Ataques en la red interna": networkAttack.md
