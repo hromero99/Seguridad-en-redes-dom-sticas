@@ -82,3 +82,35 @@ Ententiendo como funciona el protocolo ARP, sería muy fácil llegar a la conclu
 El principal problema que plantea un escaneo de tipo ARP es que genera mucho ruido en la red, de forma que puede ser detectado facilmente por cualquier detector de intrusos. Sin embargo, en el escenario en el que estamos se supone que no existen dichos mecanismos.
 
 __Como ejemplo del ruido generado en la red se deja a continuación un paquete .pcapg__ ![Análisis de Wirehark]()
+
+## Capturando  tráfico de red
+
+El siguiente paso a seguir cuando tenemos los objetivos descubiertos sería identificar cual es el dispositivo que nos interesa y comenzar a capturar tráfico del mismo. La finalidad de esta obtención de tráfico es conseguir información del objetivo, para posteriormente realizar ataques dirigidos.
+
+### Capturando tráfico de un dispositivo: ARP Spoofing
+
+Con los conocimientos explicados anteiormente sobre ARP, podemos entender perfectamente como funciona el ataque _arp spoofing_. Este ataque consiste en alterar la información almacenada en las tablas ARP del sistema, de forma que alteremos la dirección MAC del router para que apunte a nuestro equipo.
+
+Con esta modificación pretendemos hacer que cualquier paquete que envíe la víctima a internet, circule por nuestro equipo ( ya que nos encontramos entre su conexión y la del router), como consecuencia de dicha redirección de paquetes podemos realizar cualquier análisis o modificación de dicho paquete.
+
+![Arp Spoofing](img/arpSpoofing.png)
+
+Como podemos ver en el esquema, la víctima se pensará que la dirección física del router es la nuestra (por lo tanto los paquetes serán enviados a nuestro equipo), posteriormente nosotros redireccionaremos dichos paquetes al router (o switch) pertinente. El retraso de los paquetes causado por dicha redirección es completamente irrelevante.
+
+### Arp Spoofing en Linux
+
+Dentro de las diferentes distribuciones GNU/Linux tenemos diferentes herramientas para realizar ARP Spoofing, la más común es arpspoof, sin embargo, existen aplicaciones más completas como _ettercap_ o _bettercap_ que nos permiten realizar tareas más complejas de forma sencilla, como veremos posteriormente.
+
+Para realizar un ataque arp spoofing, el primer paso es activar la redirección de paquetes en nuestro equipo (para evitar así que la víctima pierda conectividad de red), para ello simplemente modificamos el archivo _/proc/sys/net/ipv4/ip_forward_
+
+    $ echo 1 > /proc/sys/net/ipv4/ip_forward
+
+Con esto tendremos activada la redirección de paquetes de forma temporal, una vez realizado este paso simplemente tenemos que ejecutar el comando arpspoof con las direcciones de la víctima y el router.
+
+    $ arpspoof -t 10.0.2.15 10.0.2.1
+
+De esta forma estamos enviando de forma constante paquetes __arp reply__ informando de que la dirección MAC correspondiente a 10.0.2.1 (el router), corresponde con la de nuestro dispositivo (10.0.2.15). Cuando la víctima pregunte cual es la dirección física de (10.0.2.1) se encontrará con los paquetes que estamos enviando y automáticamente guardará la nuestra.
+
+Llegados a este punto abriendo un sniffer podemos observar el tráfico saliente de este dispositivo. Posteiormente podemos usar alguna herramienta como _Wireshark_ para analizar el tráfico.
+
+__Ejemplo de captura de tráfico hacia páginas con cifrado SSL [SSL Capture.pcapng]()__
