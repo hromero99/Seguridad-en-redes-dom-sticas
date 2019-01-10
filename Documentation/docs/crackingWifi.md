@@ -23,7 +23,7 @@ Dicho esto, lo primero que tenemos que realizar sería comprobar que tenemos una
     
 Dentro de la salida extensa de este comando tenemos la categoria _Supported interface modes_ donde podemos comprobar si se incluye el modo monitor.
 
-### Activando el modo monitor
+### Activando el modo monitor: airmon-ng
 
 Una vez comprobado si la tarjeta es compatible, pasaremos a ponerla el modo monitor. 
 
@@ -62,9 +62,24 @@ Cuando tenemos los procesos que entraban en conflicto matados podemos pasar a po
 		(mac80211 monitor mode vif enabled for [phy0]wlan0 on [phy0]wlan0mon)
 		(mac80211 station mode vif disabled for [phy0]wlan0)
 
-Como podemos ver en la salida del comando airmon-ng se ha habilitado el modo monitor de nuestra tarjeta. Para operar con el momo monitor se habilita la interfaz wlan0mon, con la que trabajaremos a continuación.
+Como podemos ver en la salida del comando airmon-ng se ha habilitado el modo monitor de nuestra tarjeta. Para operar con el momo monitor se habilita la interfaz wlan0mon.
 
-## Escaneando redes wifi
+Podemos comprobar los canales Wifi en los que esta ecuchando nuestra tarjeta en modo monitor, para ello podemos usar el comando:
+    
+    $ iwlist wlan0mon channel
+
+Cuando hemos encontrado la red que queremos auditar (como se explicará en el siguiente apartado), podemos suministrar el canal como argumento opcional a airmon-ng, de la siguiente forma:
+
+    $ airmon-ng start wlan0 3
+
+
+
+Al igual que podemos poner la tarjeta en modo monitor, cuando terminemos de trabajar con ella debemos desactivarla, para ello airmon-ng nos permite desactivarlo haciendo uso del comando:
+    
+    $ airmon-ng stop wlan0
+
+
+## Escaneando redes wifi: airmon-ng
 
 Una vez con nuestra interfaz en modo monitor pasaremos a realizar un escaneo de todas las redes wifi que estan en nuestro entorno, para ello utilizaremos la herramienta _airodump-ng_
 
@@ -80,7 +95,7 @@ Una vez con nuestra interfaz en modo monitor pasaremos a realizar un escaneo de 
     BSSID              STATION            PWR   Rate    Lost    Frames  Probe                                                                                   
                                                                                                                                                                 
     48:8D:36:BC:25:A2  10:00:00:8A:95:26  -21    0 - 6e     0        4                                                                                           
-``` La terminilogía usada en el resultado de este comando esta explicada en el apartado anterior``
+``` La terminología usada en el resultado de este comando esta explicada en el apartado anterior``
 Es necesario examinar el resultado de esta herramienta y explicar a groso modo su funcionamiento.
 
 Airodump-ng realizará un escaneo por todos los canales de radio referentes a las redes wifi, buscando las diferentes señales (ya que permite capturar paquetes mediante el modo monitor). También detecta los clientes que existen en esas redes, así como sus direcciones mac y los puntos de acceso a los que están conectados.
