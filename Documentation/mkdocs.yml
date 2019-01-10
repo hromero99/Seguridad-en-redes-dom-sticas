@@ -8,5 +8,5 @@ nav:
     - "Preparando el arsenal": raspberry.md
     - "Recolección de información": informationGathering.md
     - "Analizando las redes Wifi": vulnerabilities.md
-    - "Ataques en redes Wifi": crackingWifi.md
-    - "Ataques en la red interna": networkAttack.md
+    - "Cracking de  redes Wifi": crackingWifi.md
+    - "Explorando la red interna": networkAttack.md
