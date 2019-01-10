@@ -96,15 +96,18 @@ Una vez con nuestra interfaz en modo monitor pasaremos a realizar un escaneo de 
                                                                                                                                                                 
     48:8D:36:BC:25:A2  10:00:00:8A:95:26  -21    0 - 6e     0        4                                                                                           
 ``` La terminología usada en el resultado de este comando esta explicada en el apartado anterior``
+
 Es necesario examinar el resultado de esta herramienta y explicar a groso modo su funcionamiento.
 
 Airodump-ng realizará un escaneo por todos los canales de radio referentes a las redes wifi, buscando las diferentes señales (ya que permite capturar paquetes mediante el modo monitor). También detecta los clientes que existen en esas redes, así como sus direcciones mac y los puntos de acceso a los que están conectados.
 
 Con este resultado podemos enfocarnos en un determinado punto de acceso, sin embargo, podemos realizar una captura de todo el tráfico y almacenarla en un archivo _pcap_ para su posterior análisis con _Wireshark_ u otra herramienta.
 
-### Capturando paquetes del objetivo
+### Limitando el rago de búsqueda
 
-Una vez hemos identificado los datos de la red objetivo, pasaremos a capturar información sobre ese punto en concreto (obviando el resto de redes).
+Como mencionamos en el apartado anterior, cuando ponemos la interfaz en modo monitor podemos especificar la escucha en determinados canales. Esto cobra sentido en este momento, cuando hemos encontrado la red wifi que queremos auditar, pasaremos a limitar el rango de captura de datos a este canal (reduciendo así en tráfico a analizar).
+
+Posteiormente podemos capturar información relevante exclusivamente al AP que nos interesa, especificando su dirección MAC(bssid) y Canal en el que emite podemos obtener mayor información de esta red, incluyendo el Handsake.
 
     $ airodump-ng --bssid 00:14:5C:84:4D:42 --essid wireless.py -c 6 -w wirelessPY wlan0mon
 
