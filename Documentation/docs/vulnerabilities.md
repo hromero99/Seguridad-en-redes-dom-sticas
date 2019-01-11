@@ -5,7 +5,7 @@ En esta etapa tendremos que interacturar con los diferentes componentes de la re
 
 Dentro de la tecnología wifi encontramos diferentes elementos en los cuales podemos basarnos para detectar vulnerabilidades. Tenemos que tener en cuenta el tipo de cifrado que esta utilizando la red, de forma que si usa WEP sería muy fácil de romper mientras que con WPA la complejidad aumenta.
 
-## Terminologia
+## Terminología
 Durante las siguientes fases estaremos haciendo referencia a algunas palabras clave relacionadas con las redes wifi, a modo de recopilación dejaré aquí las pricipales:
 
   * SSID / ESSID : Nombre de la red wifi
@@ -77,10 +77,25 @@ Este protocolo es vulnerable a KRACK, la cual fue parcheda adecuadamente. Sin em
 
 ### Wifi Protected Setup (WPS)
 
-Es un protocolo nacido para la facilidad de interconexión entre los diferentes dispositivos, evitando situaciones como compartir contraseñas complejas entre los diferentes dispositivos. WPS, permite acceder a la red mediante un pin de 8 dígitos. Este protocolo, es muy útil en cuanto a funcionalidad, sin embargo, tenemos que tener en cuenta algunos riesgos:
+Es un protocolo fue implementado en 2006 con la finalidad de que aquellos usuarios que carezcan de conociemintos sobre seguridad en redes wifi, tengan la opción de crear una conexión segura y agregar nuevos dispositivos a una red existente. Para poder realizar estas acciones se implementaron 4 modos:
 
-* Un número de 8 dígitos puede llegar a ser crackeado
-* Podemos generar el PIN de un router mediante rainbow tables
-* Si una serie de routers comparten el mismo pin y este se conoce, todos quedarán expuestos.
+1. Método Pin: Este método consiste en introducir en el dispositivo un pin leido de una pegatina o pantalla en el dispositivo.
+2. Presionando el botón: Este método consiste en presionar en ambos dispositivos (AP y STA) el botón de conexión, de forma que se active el modo de descubrimiento enlazando ambos dispositivos.
+3. NFC 
+4. USB
 
-Este protocolo generalmente es uno de los más atacados para comprometer las redes wifi, debido a la _"facilidad"_(en comparación con el cracking de contraseñas)de obtener el pin del router.
+El método 3 y 4 se obvia la explicación puesto que han quedado completamente desactualizados.
+
+#### ¿Como funciona el protocolo?
+
+El protocolo consiste en un intercambio de mensajes EAP (Extensible Authentication Protocol), los cuales estan causados por una accion del usuario (confiando en una información previa). Esta información (WPS PIN) es intercambiada meidante un nuevo elemento de información (IE) que es agregado al beacon, probe response y opcionalmente al probe request y mensajes de petición/respuesta de asociación.
+
+Tras esta comunicación entre los dispositivos el dispositivo comienza un protocolo de sesión. Esta sesión consiste en 8 mensajes que son seguidos (en caso de completarse satisfactoriamente) por un mensaje que indica que el procolo se ha completado correctamente.
+
+#### Vulnerabilidades
+
+* Online brute-force Attack: Este ataque consiste en realizar fuerza bruta al PIN del dispositivo, de forma que al obtenerlo se puede obtener la clave WPA. 
+
+* Offline brute-force Attack: Esta ataque afecta a las implementaciones por defecto de algunos fabricantes. Consiste en obtener E-S1 y E-S2 nonces de forma que un fallo en la generación aleatoria de los mismos permite obtener el pin en un par de minutos. Este ataque es conocido como _pixiwps_
+
+* Physical Security Issues: Cualquier fallo de seguridad puede ser extraído del router este no se encuentra en un lugar seguro.
