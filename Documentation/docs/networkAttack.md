@@ -114,3 +114,53 @@ De esta forma estamos enviando de forma constante paquetes __arp reply__ informa
 Llegados a este punto abriendo un sniffer podemos observar el tráfico saliente de este dispositivo. Posteiormente podemos usar alguna herramienta como _Wireshark_ para analizar el tráfico.
 
 __Ejemplo de captura de tráfico hacia páginas con cifrado SSL [SSL Capture.pcapng]()__
+
+## Modificando paquetes de red
+
+Capturar tráfico saliente puede ser de gran ayuda para entender los protocolos que usa nuestro objetivo y en el caso de que se use un protocolo no seguro poder obtener credenciales que pueden ser reutilizadas, sin embargo, la mayoria de los protocolos que se utilizan suelen estar cifrados, es en este punto donde entra la modificación de paquetes.
+
+### Bettercap: The Swiss Army knife for 802.11
+
+Bettercap es una herramienta que nació como evolución de _ettercap_, de forma que nos permite implementar mayor número de ataques facilitando mucho determindas labores (como la creación de un proxy http manual). Podemos realizar múltiples acciones mediantes los denomidamos _caplets_.
+
+Los _caplets_ son fichers .cap que contienen instrucciones de bettercap, de forma que podemos realizar diferentes acciones almacenandolas todas ellas en un simple fichero (para su posterior reutilización)
+
+#### DNS Spoofing
+
+Uno de los ataques que podemos realizar dentro de una red local consiste en la modificación de las peticiones DNS para que apunten a diferentes sitios web. Este ataque nos permite realizar ataques de phishing y obtener credenciales o redirigir a la víctima hacia un sitio con malware.
+
+Para realizar un ataque de DNS spoofing con Bettercap, en primer lugar necesitamos crear un fichero con el formato _hosts_ para indicar las páginas que queremos redireccionar.
+
+```hostsSpoofing
+ 
+	10.0.2.15 google.com	 
+	10.0.2.15 facebook.com
+	10.0.2.15  uco.es
+```
+[hostsSpooging]()
+
+De esta forma cualquier petición hacia estas direcciones será automaticamente redirigida a nuestro servidor. Posteriormente tendremos que realizar el caplet para ejecutar con Bettercap.
+
+```dnsSpooging.cap
+
+	set dns.spoof.hotst ./hostsDns
+	dns.spoof on
+```
+[dnsSpoofing.cap]()
+
+Por último ejecutamos bettercap:
+	
+	$ bettecap -caplet dns_spoofing.cap
+
+Previamente a relaizar este ataque tendremos que haber realizado un arp spoofing (para poder modificar los paquetes). Podemos incluir dicho ataque dentro del fichero dnsSpoofing.cap con las siguientes modificaciones
+
+```dnsSpooging.cap
+	arp.spoof.targets 10.0.2.15
+	arp.spoof on
+	set dns.spoof.hotst ./hostsDns¡
+	dns.spoof on
+
+```
+En el caso de que queramos realizar el ataque en todo el segmento en el que nos encotramo, podemos obviar el parámetro _arp.spoof.targets_
+
+
