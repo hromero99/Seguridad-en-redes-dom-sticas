@@ -1,0 +1,8 @@
+set http.proxy.script injectionJS.js
+set https.proxy.script injectionJS.js
+
+set http.proxy.sslstrip true
+set https.proxy.sslstrip true
+
+http.proxy on
+https.proxy on

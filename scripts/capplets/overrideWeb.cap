@@ -1,0 +1,3 @@
+set http.proxy.script override.js
+http.proxy on
+https.proxy on

