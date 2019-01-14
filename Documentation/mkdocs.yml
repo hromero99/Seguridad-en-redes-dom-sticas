@@ -10,4 +10,5 @@ nav:
     - "Analizando las redes Wifi": vulnerabilities.md
     - "Cracking de  redes Wifi": crackingWifi.md
     - "Explorando la red interna": networkAttack.md
-    - "POC: Inyectando Javscript Malicioso": javascript.md
+    - "POC: Inyectando Javascript Malicioso": javascript.md
+dev_addr: '0.0.0.0:8000'
