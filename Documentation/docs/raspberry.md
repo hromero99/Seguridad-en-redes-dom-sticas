@@ -3,7 +3,7 @@
 ## Configurando la Raspberry  PI como herramienta de hacking
 
 ### ¿Qué es una Raspberry?
-El proyecto [Raspberry Pi](https://www.raspberrypi.org/) consiste en una serie de ordenadores cuyo principal objetivo era potencial el aprendizaje en entornos educativos así como en paises en vias de desarrollo, sin embargo, gracias al potencial de estos equipos se utilizan para otros muchos fines como robótica o en nuestro caso pentesting.
+El proyecto [Raspberry Pi](https://www.raspberrypi.org/) consiste en una serie de ordenadores cuyo principal objetivo era potenciar el aprendizaje en entornos educativos así como en paises en vias de desarrollo, sin embargo, gracias al potencial de estos equipos se utilizan para otros muchos fines como robótica o en nuestro caso pentesting.
 
 #### ¿Cuáles son las características que tiene?
 
@@ -52,3 +52,8 @@ Para facilitar el trabajo usaremos un script de configuración que nos automatiz
 Podemos encontrar el script en el [repositorio de Github](https://github.com/cyberh99/raspberryAP)
 
 Con esto conseguimos tener acceso por SSH haciendo uso de nuestro móvil o ordenador independientemente de la conexión a internet. Puesto que estaremos trabajando posteriormente con redes wifi es recomendable tener 2 antenas independientes para realizar los ataques descritos en el laboratorio.
+
+!!! info
+    Es necesario configurar el sercicio SSH para ejecutarse al inicio, para ello usaremos el comando
+    
+     sudo systemctl start ssh

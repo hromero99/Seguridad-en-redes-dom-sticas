@@ -1,14 +1,27 @@
 site_name: Hacking Doméstico
+site_author: 'Héctor Romero <i72roloh@uco.es>'
+site_description: 'Vulnerabilidades presentes en el entorno doméstico'
 theme:
     name: "material"
 
 nav:
-    - "Index": index.md
+    - "Inicio": index.md
     - "Introducción": introduccion.md
     - "Preparando el arsenal": raspberry.md
     - "Recolección de información": informationGathering.md
     - "Analizando las redes Wifi": vulnerabilities.md
     - "Cracking de  redes Wifi": crackingWifi.md
-    - "Explorando la red interna": networkAttack.md
+    - "Atacando la red interna": networkAttack.md
     - "POC: Inyectando Javascript Malicioso": javascript.md
+    
+markdown_extensions:
+    - footnotes: ~
+    - admonition: ~
+    - codehilite:
+        guess_lang: false
+        linenums: true
+    - toc:
+        permalink: true
+    - def_list: ~
+    
 dev_addr: '0.0.0.0:8000'

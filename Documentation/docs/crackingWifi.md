@@ -1,4 +1,4 @@
-# Vulnerabilidades en redes wifi
+# Explotación de vulnerabilidades en redes Wifi
 
 Como se ha detallado en el apartado anterior encontramos diferentes aspectos dentro de una red wifi que deben de ser analizados. Para realizar análisis de redes wifi disponemos de la suite [**Aircrack-ng**](https://www.aircrack-ng.org/), la cual nos brinda numerosas herramientas para poder realizar dicho análisis.
 
@@ -51,6 +51,9 @@ Para matar estos procesos simplemente usamos la herramienta airmon-ng para matar
 
     $ airmon-ng check kill
 
+!!! info
+	Posteriormente tendremos que habilitar el proceso _network-manager_ para conectarnos a la red wifi. También será necesario desactivar la interfaz de modo monitor.
+
 Cuando tenemos los procesos que entraban en conflicto matados podemos pasar a poner la interfaz en modo monitor, para ello usaremos la misma herramienta:
 
     $ airmon-ng start wlan1
@@ -62,9 +65,9 @@ Cuando tenemos los procesos que entraban en conflicto matados podemos pasar a po
 		(mac80211 monitor mode vif enabled for [phy0]wlan1 on [phy0]wlan1mon)
 		(mac80211 station mode vif disabled for [phy0]wlan1)
 
-Como podemos ver en la salida del comando airmon-ng se ha habilitado el modo monitor de nuestra tarjeta. Para operar con el momo monitor se habilita la interfaz wlan1mon.
+Como podemos ver en la salida del comando airmon-ng se ha habilitado el modo monitor de nuestra tarjeta. Para operar con el modo monitor se habilita la interfaz wlan1mon.
 
-Podemos comprobar los canales Wifi en los que esta ecuchando nuestra tarjeta en modo monitor, para ello podemos usar el comando:
+Podemos comprobar los canales Wifi en los que esta escuchando nuestra tarjeta en modo monitor, para ello podemos usar el comando:
     
     $ iwlist wlan1mon channel
 
@@ -111,19 +114,22 @@ Una vez con nuestra interfaz en modo monitor pasaremos a realizar un escaneo de 
 	F8:FB:56:28:37:01  E4:0E:EE:44:DF:24  -72    1e- 1      0        4                           
 	EC:08:6B:AB:77:F0  4C:74:03:70:7C:3A  -85    0 - 6      0        1                  
 
-``` La terminología usada en el resultado de este comando esta explicada en el apartado anterior``
+``` La terminología usada en el resultado de este comando esta explicada en el apartado anterior```
+
+!!! warning
+	 Detectamos en el escaneo una red OPN, esto quiere decir que no posee cifrado. Dejar una red sin cifrado (aunque sea una pública) puede desembocar y graves problemas de seguridad. Siempre es recomendado tener habilitado el protocolo WPA2 CCMP  o WPA3 al ser el protocolo más robusto.
 
 
 Airodump-ng realizará un escaneo por todos los canales de radio referentes a las redes wifi e irá buscando las diferentes señales y los clientes conectados a la mismas.
 
-Este resultado nos será útil para identificar todas las señales wifi de nuestro entorno, así como los cientes conectados a estas. Tenemos que tener en cuenta que si un punto de acceso tiene clientes conectados, el proceso de obtención de la contraseña será más fácil de realizar.
+Este resultado nos será útil para identificar todas las señales wifi de nuestro entorno, así como los clientes conectados a estas. Tenemos que tener en cuenta que si un punto de acceso tiene clientes conectados, el proceso de obtención de la contraseña será más fácil de realizar.
 
 
 ### Limitando el rango de búsqueda
 
 En el anterior ejemplo estabamos haciendo una captura de todos los canales wifi, de forma que nuestra interfaz (en modo monitor) iba cambiando constantemente de canal para encontrar los clientes y puntos de acceso de cada canal.
 
-Sin embargo, cuando estamos trabando con un objetivo en concretp tenemos que  capturar información  exclusivamente de dicho AP para ello tenemos que  especificar su dirección MAC(bssid) y Canal en el que emite podemos obtener mayor información de esta red, indicaremos también un fichero donde almacenar la información que capturemos, de forma que el handsake quede almacenado para posteior tratamiento.
+Sin embargo, cuando estamos trabando con un objetivo en concreto tenemos que  capturar información  exclusivamente de dicho AP para ello tenemos que  especificar su dirección MAC(bssid) y Canal en el que emite podemos obtener mayor información de esta red, indicaremos también un fichero donde almacenar la información que capturemos, de forma que el handshake quede almacenado para posterior tratamiento.
 
 	$ airodump-ng --bssid 7C:8B:CA:6C:85:80 -c 4 -w capture wlan1mon
 
@@ -150,7 +156,7 @@ aireplay-ng es una herramienta dentro de la suite que nos permite generar tráfi
 
 En nuestro caso, estamos trabajando en una red WPA PSK. Cuando encontramos un cliente conectado a esta red, el proceso de captura de handsake parece imposible (puesto que el handsake se obtiene durante el proceso de autenticación), por lo cual, tendríamos que esperar a que el cliente u otro nuevo se conecte, en este punto es donde entra en juego aireplay.
 
-Podemos enviar paquetes que permite desautenticar a los clientes de una red, dichos clietnes, posteriormente se verán obligados a conectarse y nosotros capturaremos el handsake.
+Podemos enviar paquetes que permite desautenticar a los clientes de una red, dichos clientes, posteriormente se verán obligados a conectarse y nosotros capturaremos el handsake.
 
 Con aireplay-ng podemos enviar diferente tipo de tráfico, sin embargo, como hemos mencionado en nuestro caso nos interesa desauntenticar al usuario, para ello usaremos:
 	
@@ -163,17 +169,17 @@ Con aireplay-ng podemos enviar diferente tipo de tráfico, sin embargo, como hem
 
 En este comando, estamos especificando los siguientes parámetros:
 
-* -0 0 --> Indicamos que es un ataque de desautenticación. Con 0 indicamos el intervalo de nvío, en este caso continuamente
+* -0 0 --> Indicamos que es un ataque de desautenticación. Con 0 indicamos el intervalo de envío, en este caso continuamente
 
 * -a --> Indicamos la dirección MAC del punto de acceso
 
 * -c --> Indicamos la dirección MAC del cliente para desautenticar
 
-Pasando un tiempo, el cliente será desautenticado y automaticamente intentará volver a conectarse (de forma manual o automática), será en ese momento donde podamos caputar el handsake.
+Pasando un tiempo, el cliente será desautenticado y automaticamente intentará volver a conectarse (de forma manual o automática), será en ese momento donde podamos capturar el handsake.
 
 ## Obteniendo la contraseña: aircrack-ng
 
-aircrack-ng es la herramienta que nos permite crackear la contraseña, podemos utilizar diferentes métodos, en este caso vamos a realizar un ataque por diccionario. Podemos utilizar otros métodos como cracking mediante gpu haciendo uso de herramientas como _pyrit_.
+aircrack-ng es la herramienta que nos permite crackear la contraseña, podemos utilizar diferentes métodos, en este caso vamos a realizar un ataque por diccionario. Podemos utilizar otros métodos como cracking mediante gpu haciendo uso de herramientas como [_pyrit_](https://github.com/JPaulMora/Pyrit).
 
 	$ aircrack-ng -w passwordList capture-01.cap
 
@@ -198,4 +204,9 @@ aircrack-ng es la herramienta que nos permite crackear la contraseña, podemos u
 
 Tras realizar el ataque, si este ha concluido satisfactoriamente, encontraremos la contraseña, así como las diferentes claves utilizadas durante el proceso.
 
+!!! warning
+
+	El cracking de la contraseña se ha realizado tan rápido a causa de que la contraseña esta dentro de un diccionario. Las contraseñas por defecto suelen estar en los diferentes diccionarios disponibles por internet.
+
+	A pesar de que la contraseña no este dentro de un diccionario podemos realizar un ataque usando procesamiento por GPU, de forma que si es simple la contraseña conllevará muy poco tiempo obtenerla.
  

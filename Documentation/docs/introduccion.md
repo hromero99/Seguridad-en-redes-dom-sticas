@@ -1,5 +1,9 @@
 # Introducción
 
+## Disclaimer
+
+Todo el material que se expone a continuación (página web, laboratorios y presentación) esta realizada con fines educativos. No tiene como finalidad incitar al delito. 
+
 ## ¿Cuál es el objetivo del la presentación?
 
 El objetivo es enumerar las posibles vulnerabilidades que podemos apreciar en un hogar corriente. Se planetea un escenario en el cuál se prentende recolectar información de un usuario concreto dentro de un núcleo familiar.

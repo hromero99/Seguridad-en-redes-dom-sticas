@@ -8,7 +8,7 @@ Aprovechando esta caracterísitca de Javascript podemos inyectar un fichero Java
 
 Para poder inyectar Javascript dentro de las peticiones, tendremos que realizar un ataque de arp spoofing, de forma que podemos realizar tratamiento de dichos paquetes.
 
-Posteiormente lo que tenemos que realizar es montar un proxy http/https, de forma que todas las peticiones de nuestro objetivo pasen por este y queden infectadas.
+Posteriormente lo que tenemos que realizar es montar un proxy http/https, de forma que todas las peticiones de nuestro objetivo pasen por este y queden infectadas.
 
 Para poder modificar las peticiones usaremos el proxy http de bettercap. En primer lugar usaremos un código Javascript de ejemplo.
 
@@ -33,7 +33,7 @@ function onResponse(req,res){
 ```
 [injectionJS.js]()
 
-Este código Javascript realiza una acción muy sencilla, se encarga de reemplarar la etiqueta _head_ del código html de cualquier página agregando una sencilla ventana que dice "@cyberh99 was here". Con esto podemos comprobar como funcionala inyección de Javascript.
+Este código Javascript realiza una acción muy sencilla, se encarga de reemplazar la etiqueta _head_ del código html de cualquier página agregando una sencilla ventana que dice "@cyberh99 was here". Con esto podemos comprobar como funcionala inyección de Javascript.
 
 Dentro del código encontramos dos funciones, las cuales _tienen que estar para el funcionamiento del script_, estas tienen la siguiente relevancia:
 

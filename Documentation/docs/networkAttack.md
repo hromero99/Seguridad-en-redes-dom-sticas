@@ -2,9 +2,11 @@
 
 Una vez que estamos dentro de la red wifi, nos encontramos ante un escenario totalmente diferente al anterior. Tenemos que realizar descubrimiento de equipos, comprobar configuraciones por defecto, explorar vulnerabilidades del hardware de red, entre una larga lista de tareas. Dicho esto comencemos por el primer paso: _descubrimiento de objetivos_
 
+!!!warning
+    Podemos conectarnos a la red que hemos conseguido crackear sin ningún problema puesto que no existe ninguna restricción. Para evitar estas dispositivos no autorizados en nuestra red es recomendable implementar un filtrado con MAC, de forma que solo se permita la conexión a una determiada lista de dispositivos.
 ## Descubrimiento de dispositivos
 
-Teniendo en cuanta las características estándar de una red cuyo hardware de red está suministado por el ISP (Internet Service Provider) y asumiendo configuraciones por defecto existirá un servidor DHCP (Dynamic Host Configuration Protocol) el cual automáticamente nos asignirá los datos necesarios para tener acceso a internet.
+Teniendo en cuenta las características estándar de una red cuyo hardware de red está suministado por el ISP (Internet Service Provider) y asumiendo configuraciones por defecto existirá un servidor DHCP (Dynamic Host Configuration Protocol) el cual automáticamente nos asignirá los datos necesarios para tener acceso a internet.
 
 Al obtener una dirección ip automáticamente (como consecuencia del servidor DHCP), podremos tener cierta idea del tipo de red en el que estamos trabajando y en consecuncia realizar un escaneo de los dispositivos existentes.
 
@@ -24,6 +26,11 @@ Generalmente el comando _route_ nos mostrará algo similar a lo anterior. Dentro
 * Máscara de red: Nos permitirá determinar en que tipo de red estamos trabajando (Tipo A,B,C)
  
 Esta información nos permitirá posteriormente realizar un escaneo de la red en busca de dispositivos.
+
+!!! warning
+    Tenemos dirección ip de forma automática puesto que existe un servidor DHCP habilitado en la red. Para mayor seguridad podemos deshabilitar dicho servicio y asignar las direcciones ip de forma autmática a los diferentes dispositivos.
+
+    También podemos implementar un filtrado por dirección ip, creando una lista blanca o negra.
 
 ### Protocolo ARP
 
@@ -56,7 +63,7 @@ Esta información queda almacenada en nuestro sistema, de forma que podemos cons
     10.0.2.1                 ether   52:54:00:12:35:00   C                     wlan0
     10.0.2.15                ether   08:00:27:7e:f5:47   C                     wlan0
 
-Como podemos ver podemos consultar las direcciones físicas (HWaddress), relacionadas con cada dirección IP (Address). La información almacenada en esta tabla es esencial, puesto que cuando queremos enviar datos (paquetes) entre diferentes máquinas (nustra máquina local y un servidor web), se realizará mediante la dirección física, por lo que el sistema operativo consultará los datos almacenados en esta tabla.
+Podemos consultar las direcciones físicas (HWaddress), relacionadas con cada dirección IP (Address). La información almacenada en esta tabla es esencial, puesto que cuando queremos enviar datos (paquetes) entre diferentes máquinas (nustra máquina local y un servidor web), se realizará mediante la dirección física, por lo que el sistema operativo consultará los datos almacenados en esta tabla.
 
 #### ¿Qué sucede si no esta la dirección en la tabla ARP?
 
@@ -111,9 +118,14 @@ Con esto tendremos activada la redirección de paquetes de forma temporal, una v
 
 De esta forma estamos enviando de forma constante paquetes __arp reply__ informando de que la dirección MAC correspondiente a 10.0.2.1 (el router), corresponde con la de nuestro dispositivo (10.0.2.15). Cuando la víctima pregunte cual es la dirección física de (10.0.2.1) se encontrará con los paquetes que estamos enviando y automáticamente guardará la nuestra.
 
-Llegados a este punto abriendo un sniffer podemos observar el tráfico saliente de este dispositivo. Posteiormente podemos usar alguna herramienta como _Wireshark_ para analizar el tráfico.
+Llegados a este punto abriendo un sniffer podemos observar el tráfico saliente de este dispositivo. Posteriormente podemos usar alguna herramienta como _Wireshark_ para analizar el tráfico.
 
 __Ejemplo de captura de tráfico hacia páginas con cifrado SSL [SSL Capture.pcapng]()__
+
+
+!!! info
+
+    Para prevenir este ARP spoofing es posible introducir las entradas dentro de la tabla ARP de forma manual.
 
 ## Modificando paquetes de red
 
@@ -161,6 +173,6 @@ Previamente a relaizar este ataque tendremos que haber realizado un arp spoofing
 	dns.spoof on
 
 ```
-En el caso de que queramos realizar el ataque en todo el segmento en el que nos encotramo, podemos obviar el parámetro _arp.spoof.targets_
+En el caso de que queramos realizar el ataque en todo el segmento en el que nos encotramos, podemos obviar el parámetro _arp.spoof.targets_
 
 
