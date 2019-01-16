@@ -100,3 +100,6 @@ Tras esta comunicación entre los dispositivos el dispositivo comienza un protoc
 * Offline brute-force Attack: Esta ataque afecta a las implementaciones por defecto de algunos fabricantes. Consiste en obtener E-S1 y E-S2 nonces de forma que un fallo en la generación aleatoria de los mismos permite obtener el pin en un par de minutos. Este ataque es conocido como _pixiwps_
 
 * Physical Security Issues: Cualquier fallo de seguridad puede ser extraído del router este no se encuentra en un lugar seguro.
+
+!!!info
+    Es recomendable desactivar el WPS, debido a que supone uno de los principales factores de ataque frente a un punto de acceso.

@@ -55,6 +55,10 @@ https.proxy on
 ```
 [injectionTest.cap]()
 
+!!!warning
+    Existen extensiones para los diferentes navegadores como Firefox y Google Chrome que permite deshabilitar Javascript de las diferentes páginas web, habilitando exclusivamente aquellos que sean de confianza.
+
+    Entre las diferentes opciones, la más usada y recomendad es [noScript](https://noscript.net/)
 ## Beef: Browser Explotation Framework
 
 El código Javascript que hemos inyectado es muy simple, para una mera demostración, sin embargo, podemos hacer cosas mucho más complejas, un ejemplo de ello es Beef.

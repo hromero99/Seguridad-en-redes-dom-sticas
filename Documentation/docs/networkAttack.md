@@ -175,4 +175,8 @@ Previamente a relaizar este ataque tendremos que haber realizado un arp spoofing
 ```
 En el caso de que queramos realizar el ataque en todo el segmento en el que nos encotramos, podemos obviar el parámetro _arp.spoof.targets_
 
+!!!warning
+    Para asegurarnos de no ser víctimas de DNS spoofing tenemos que asegurarnos de que el certificado SSL de la página web sea correcto y verificado por una entidad certificadora válida.
+
+    También es posible agregar seguridad a las consultas DNS como [dnscrypt](https://www.opendns.com/about/innovations/dnscrypt/)
 

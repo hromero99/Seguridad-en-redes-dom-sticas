@@ -44,6 +44,10 @@ Una vez descomprimida la imagen pasarémos a montarla dentro de la tarjeta SD pa
 
 Una vez haya finalizado _dd_ podremos iniciar la raspberry y comenzar con la configuración.
 
+!!!info
+  
+    Como medida de seguridad es recomedable cambiar las credenciales por defecto __root/toor__, así como actualizar todo el sistema antes de empezar a trabajar con el mismo.
+
 ## Creando un punto de Acceso propio
 
 Con el fin de utilizar la raspberry de forma remota y sin conexión a internet (puesto que no tenemos esta garantizada), pasaremos a crear un punto de acceso haciendo uso de una antena Wifi (en el caso del modelo raspberry pi 3 puede ser la interna).
