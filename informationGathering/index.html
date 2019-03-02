@@ -2,7 +2,7 @@
 
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="no-js">
   <head>
     
@@ -10,7 +10,11 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
+        <meta name="description" content="Análisis de las vulnerabilidades presentes en un entorno doméstico">
       
+      
+      
+        <meta name="author" content="Héctor Romero <i72roloh@uco.es>">
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -32,20 +36,20 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
     
     
       
-        <title>Recolección de información - Hacking Doméstico</title>
+        <title>Recolección de información - Seguridad en redes domésticas</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.11e41852.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application.982221ab.css">
       
       
     
     
-      <script src="../assets/javascripts/modernizr.20ef595d.js"></script>
+      <script src="../assets/javascripts/modernizr.1f0bcf2b.js"></script>
     
     
       
@@ -56,6 +60,9 @@
     
     <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
+    
+    
+      
     
     
   </head>
@@ -81,7 +88,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="Hacking Doméstico" class="md-header-nav__button md-logo">
+        <a href=".." title="Seguridad en redes domésticas" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -93,22 +100,19 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
-            
-              <span class="md-header-nav__topic">
-                Hacking Doméstico
-              </span>
-              <span class="md-header-nav__topic">
-                Recolección de información
-              </span>
-            
+            <span class="md-header-nav__topic">
+              Seguridad en redes domésticas
+            </span>
+            <span class="md-header-nav__topic">
+              Recolección de información
+            </span>
           
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -131,7 +135,6 @@
     </div>
   </div>
 </div>
-          
         
       </div>
       
@@ -153,12 +156,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href=".." title="Hacking Doméstico" class="md-nav__button md-logo">
+    <a href=".." title="Seguridad en redes domésticas" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    Hacking Doméstico
+    Seguridad en redes domésticas
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -169,8 +172,8 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Index" class="md-nav__link">
-      Index
+    <a href=".." title="Inicio" class="md-nav__link">
+      Inicio
     </a>
   </li>
 
@@ -312,8 +315,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../networkAttack/" title="Explorando la red interna" class="md-nav__link">
-      Explorando la red interna
+    <a href="../networkAttack/" title="Atacando la red interna" class="md-nav__link">
+      Atacando la red interna
     </a>
   </li>
 
@@ -324,8 +327,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../javascript/" title="POC: Inyectando Javscript Malicioso" class="md-nav__link">
-      POC: Inyectando Javscript Malicioso
+    <a href="../javascript/" title="POC: Inyectando Javascript Malicioso" class="md-nav__link">
+      POC: Inyectando Javascript Malicioso
     </a>
   </li>
 
@@ -407,32 +410,32 @@
               
                 
                 
-                <h1 id="recoleccion-de-informacion">Recolección de información</h1>
-<h2 id="que-podemos-definir-como-recoleccion-de-informacion">¿Qué podemos definir como recolección de información?</h2>
+                <h1 id="recoleccion-de-informacion">Recolección de información<a class="headerlink" href="#recoleccion-de-informacion" title="Permanent link">&para;</a></h1>
+<h2 id="que-podemos-definir-como-recoleccion-de-informacion">¿Qué podemos definir como recolección de información?<a class="headerlink" href="#que-podemos-definir-como-recoleccion-de-informacion" title="Permanent link">&para;</a></h2>
 <p>Como su propio nombre indica consiste en obtener información sobre el sistema que vamos a atacar, sin embargo, tenemos que hacer una distintición entre:</p>
 <ul>
 <li><strong>Pasive Footprinting</strong> o recolección pasiva de información: Este proceso consiste en consultar información pública en internet relacionada con la infraestructura que estamos atacando</li>
 <li><strong>Active Footprinting</strong> o recolección activa de informació: Este proceso consiste en interactuar directamente con los dispostivos de la empresa, de forma que se puedan obtener protocolos, puertos de conexión, entre otros.</li>
 </ul>
-<h3 id="passive-footprinting-hacking-con-buscadores">Passive Footprinting: Hacking con buscadores</h3>
+<h3 id="passive-footprinting-hacking-con-buscadores">Passive Footprinting: Hacking con buscadores<a class="headerlink" href="#passive-footprinting-hacking-con-buscadores" title="Permanent link">&para;</a></h3>
 <p>La recolección pasiva de información se basa principalmente en la búsqueda de información sobre la empresa utilizando recursos como la información del domino (resultado de <em>whois</em>). Sin embargo, con el objetivo que tenemos en esta presentación, nos centraremos en otra técnica de passive footprinting, esta es el <strong>hacking con buscadores</strong>.</p>
 <p>El hacking con buscadores consiste en un conjunto de técnicas que nos permiten encontrar información más precisa haciendo uso de los operadores de los buscadores. Esta técnica es conocida como Google Hacking o Google dorking.</p>
 <p>A pesar de las búsquedas aparentemente exactas que nos ofrece Google buscando sobre cualquier tema, podemos encontrar ciertos operadores que nos permiten encontrar información más precisa. Un claro ejemplo de esto sería encontrar todos los documentos de un determinado dominio o encontrar información de una misma persona en diferentes redes sociales.</p>
-<p>Un objetivo a considerar del hacking con buscadores consiste en <strong>reducir el número de resultados</strong> de forma que analizar dicho contenido no suponga muzho esfuerzo (ni humano ni computacional).</p>
+<p>Un objetivo a considerar del hacking con buscadores consiste en <strong>reducir el número de resultados</strong> de forma que analizar dicho contenido no suponga mucho esfuerzo (ni humano ni computacional).</p>
 <p>Para poder aplicar esta técnica en primer lugar tenemos que conocer los operadores de búsqueda que nos ofrece Google, los cuales se muestran a conituación.</p>
 <p><img alt="Operadores de busqueda" src="../img/googleHacking1.png" />
 <img alt="Operadores lógicos" src="../img/GoogleHacking2.png" /></p>
 <p>Con los operadores mostrados anteriormente podemos conformar los llamados <strong>dorks</strong> que son combinaciones de operadores que nos permiten encontrar información sensible de diferente carácter. Podemos encontrar gran cantidad de dork en el <a href="https://www.exploit-db.com/google-hacking-database">Google Hacking Database</a></p>
-<h2 id="osint-open-source-intelligence">OSINT (Open Source Intelligence )</h2>
-<p>Podemos definir OSINT en español como inteligencia de fuentes abiertas. Con esta esqueta traducción nos podemos hacer una muy ligera idea, de lo que supone este término.</p>
-<p>Con OSINT nos referimos a la información que existe pública en la red (incluyendo la <strong>Deep Web</strong>), siendo esta información pública,gratuita y desclasificada. El matiz que diferencias la fuentes OSINT es que son <strong>fuentes utilizadas para crear inteligencia</strong></p>
+<h2 id="osint-open-source-intelligence">OSINT (Open Source Intelligence )<a class="headerlink" href="#osint-open-source-intelligence" title="Permanent link">&para;</a></h2>
+<p>Podemos definir OSINT en español como inteligencia de fuentes abiertas. Con esta escueta traducción nos podemos hacer una muy ligera idea, de lo que supone este término.</p>
+<p>Con OSINT nos referimos a la información que existe pública en la red (incluyendo la <strong>Deep Web</strong>). El matiz que diferencia las fuentes OSINT es que son <strong>fuentes utilizadas para crear inteligencia</strong>.</p>
 <p>La importancia de las fuentes OSINT radica en que nos permite crear inteligencia que nos permita tomar decisiones en múltiples situaciones. En base a la información recogida podrémos decidir nuestra forma de actuar.</p>
-<p>Existen diversas herramientas OSINT como maltego, que nos proporcionan múltiples funcionalidades, sin embargo, estas herramientas suelen ser de pago y los resultados están limitados.</p>
-<h3 id="obteniendo-informacion-de-twitter-tweepy">Obteniendo información de Twitter: tweepy</h3>
-<p>Como alternativa para este escenario hemos decidio utilizar una biblioteca de Python llamada <em>Tweepy</em> que nos permite realizar consultas a la API de Twitter y de esta forma obtener información relacionada con dicha red social.</p>
+<p>Existen diversas herramientas OSINT como <a href="https://en.wikipedia.org/wiki/Maltego">maltego</a>, que nos proporcionan múltiples funcionalidades, sin embargo, estas herramientas suelen ser de pago y los resultados están limitados.</p>
+<h3 id="obteniendo-informacion-de-twitter-tweepy">Obteniendo información de Twitter: tweepy<a class="headerlink" href="#obteniendo-informacion-de-twitter-tweepy" title="Permanent link">&para;</a></h3>
+<p>Como alternativa para este escenario hemos decidio utilizar una biblioteca de Python llamada <a href="https://tweepy.readthedocs.io/en/v3.5.0/"><em>Tweepy</em></a> que nos permite realizar consultas a la API de Twitter y de esta forma obtener información relacionada con dicha red social.</p>
 <p>¿Qué pretendemos lograr con este script? La respuesta es muy simple, podemos estar monitoreando la cuenta de la victima para conocer sus publicaciones, con estas publicaciones podremos obtener información como horarios de salida, dispositivos que utiliza entre otras.</p>
 <p>En escenarios mas complejos, podemos utilizar librerias de procesamiento de lenguaje natural (NTPL) entre otras para poder extraer la máxima información posible, sin embargo, para este ejemplo las obviaremos.</p>
-<p><a href="">Script monitorización Twitter</a></p>
+<p><a href="https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/twitterMonitor.py">Script monitorización Twitter</a></p>
                 
                   
                 
@@ -496,20 +499,15 @@
           Material for MkDocs</a>
       </div>
       
-        
-      
     </div>
   </div>
 </footer>
       
     </div>
     
-      <script src="../assets/javascripts/application.9e1f3b71.js"></script>
+      <script src="../assets/javascripts/application.d9aa80ab.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
-      
-    
-    
       
     
   </body>

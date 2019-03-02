@@ -2,7 +2,7 @@
 
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="no-js">
   <head>
     
@@ -10,7 +10,11 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
+        <meta name="description" content="Análisis de las vulnerabilidades presentes en un entorno doméstico">
       
+      
+      
+        <meta name="author" content="Héctor Romero <i72roloh@uco.es>">
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -32,20 +36,20 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
     
     
       
-        <title>Explorando la red interna - Hacking Doméstico</title>
+        <title>Atacando la red interna - Seguridad en redes domésticas</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.11e41852.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application.982221ab.css">
       
       
     
     
-      <script src="../assets/javascripts/modernizr.20ef595d.js"></script>
+      <script src="../assets/javascripts/modernizr.1f0bcf2b.js"></script>
     
     
       
@@ -56,6 +60,9 @@
     
     <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
+    
+    
+      
     
     
   </head>
@@ -81,7 +88,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="Hacking Doméstico" class="md-header-nav__button md-logo">
+        <a href=".." title="Seguridad en redes domésticas" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -93,22 +100,19 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
-            
-              <span class="md-header-nav__topic">
-                Hacking Doméstico
-              </span>
-              <span class="md-header-nav__topic">
-                Explorando la red interna
-              </span>
-            
+            <span class="md-header-nav__topic">
+              Seguridad en redes domésticas
+            </span>
+            <span class="md-header-nav__topic">
+              Atacando la red interna
+            </span>
           
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -131,7 +135,6 @@
     </div>
   </div>
 </div>
-          
         
       </div>
       
@@ -153,12 +156,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href=".." title="Hacking Doméstico" class="md-nav__button md-logo">
+    <a href=".." title="Seguridad en redes domésticas" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    Hacking Doméstico
+    Seguridad en redes domésticas
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -169,8 +172,8 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Index" class="md-nav__link">
-      Index
+    <a href=".." title="Inicio" class="md-nav__link">
+      Inicio
     </a>
   </li>
 
@@ -250,11 +253,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Explorando la red interna
+        Atacando la red interna
       </label>
     
-    <a href="./" title="Explorando la red interna" class="md-nav__link md-nav__link--active">
-      Explorando la red interna
+    <a href="./" title="Atacando la red interna" class="md-nav__link md-nav__link--active">
+      Atacando la red interna
     </a>
     
       
@@ -384,8 +387,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../javascript/" title="POC: Inyectando Javscript Malicioso" class="md-nav__link">
-      POC: Inyectando Javscript Malicioso
+    <a href="../javascript/" title="POC: Inyectando Javascript Malicioso" class="md-nav__link">
+      POC: Inyectando Javascript Malicioso
     </a>
   </li>
 
@@ -527,28 +530,60 @@
               
                 
                 
-                <h1 id="ataques-en-la-red-interna">Ataques en la red interna</h1>
+                <h1 id="ataques-en-la-red-interna">Ataques en la red interna<a class="headerlink" href="#ataques-en-la-red-interna" title="Permanent link">&para;</a></h1>
 <p>Una vez que estamos dentro de la red wifi, nos encontramos ante un escenario totalmente diferente al anterior. Tenemos que realizar descubrimiento de equipos, comprobar configuraciones por defecto, explorar vulnerabilidades del hardware de red, entre una larga lista de tareas. Dicho esto comencemos por el primer paso: <em>descubrimiento de objetivos</em></p>
-<h2 id="descubrimiento-de-dispositivos">Descubrimiento de dispositivos</h2>
-<p>Teniendo en cuanta las características estándar de una red cuyo hardware de red está suministado por el ISP (Internet Service Provider) y asumiendo configuraciones por defecto existirá un servidor DHCP (Dynamic Host Configuration Protocol) el cual automáticamente nos asignirá los datos necesarios para tener acceso a internet.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Podemos conectarnos a la red que hemos conseguido crackear sin ningún problema puesto que no existe ninguna restricción. Para evitar estas dispositivos no autorizados en nuestra red es recomendable implementar un filtrado con MAC, de forma que solo se permita la conexión a una determiada lista de dispositivos.</p>
+</div>
+<h2 id="descubrimiento-de-dispositivos">Descubrimiento de dispositivos<a class="headerlink" href="#descubrimiento-de-dispositivos" title="Permanent link">&para;</a></h2>
+<p>Teniendo en cuenta las características estándar de una red cuyo hardware de red está suministado por el ISP (Internet Service Provider) y asumiendo configuraciones por defecto existirá un servidor DHCP (Dynamic Host Configuration Protocol) el cual automáticamente nos asignirá los datos necesarios para tener acceso a internet.</p>
 <p>Al obtener una dirección ip automáticamente (como consecuencia del servidor DHCP), podremos tener cierta idea del tipo de red en el que estamos trabajando y en consecuncia realizar un escaneo de los dispositivos existentes.</p>
 <p>El primer paso sería obtener determinada información de la red, para ello podemos utilizar las herramientas que nos proporiciona nuestro sistema GNU/Linux, concretamente  <em>route</em></p>
-<pre><code>$ route
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ route
 
 Kernel IP routing table
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 default         10.0.2.1        0.0.0.0         UG    100    0        0 wlan0
 10.0.2.0        0.0.0.0         255.255.255.0   U     100    0        0 wlan0
-</code></pre>
+</pre></div>
+</td></tr></table>
+
 <p>Generalmente el comando <em>route</em> nos mostrará algo similar a lo anterior. Dentro de esta salida nos permite obtener cierta información:</p>
 <ul>
 <li>Puerta de enlace (Gateway): Esta dirección nos permitirá saber mediante que dispositivo estamos saliendo a Internet</li>
 <li>Máscara de red: Nos permitirá determinar en que tipo de red estamos trabajando (Tipo A,B,C)</li>
 </ul>
 <p>Esta información nos permitirá posteriormente realizar un escaneo de la red en busca de dispositivos.</p>
-<h3 id="protocolo-arp">Protocolo ARP</h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Tenemos dirección ip de forma automática puesto que existe un servidor DHCP habilitado en la red. Para mayor seguridad podemos deshabilitar dicho servicio y asignar las direcciones ip de forma autmática a los diferentes dispositivos.</p>
+<p>También podemos implementar un filtrado por dirección ip, creando una lista blanca o negra.</p>
+</div>
+<h3 id="protocolo-arp">Protocolo ARP<a class="headerlink" href="#protocolo-arp" title="Permanent link">&para;</a></h3>
 <p>Para realizar el descubrimiento de los equipos disponibles en la red usaremos la herramienta <em>nmap</em> puesto que nos permite obtener gran cantidad de información dentro de una red. En primer lugar, realizaremos un escaneo ARP (debido a su velocidad) para enumerar los dispositivos existentes:</p>
-<pre><code>$ nmap -sn 10.0.2.0/24
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ nmap -sn 10.0.2.0/24
 Starting Nmap 7.70 ( https://nmap.org ) at 2019-01-09 18:55 CET
 Nmap scan report for 10.0.2.1
 Host is up (0.00032s latency).
@@ -565,16 +600,23 @@ MAC Address: 08:00:27:7E:F5:47 (Oracle VirtualBox virtual NIC)
 Nmap scan report for 10.0.2.4
 Host is up.
 Nmap done: 256 IP addresses (5 hosts up) scanned in 7.61 seconds
-</code></pre>
+</pre></div>
+</td></tr></table>
+
 <p>El protocolo ARP (Address Resolution Protocol) es un protoclo que trabaja en la capa 2 de la <a href="https://simple.wikipedia.org/wiki/TCP/IP_model">pila TCP/IP</a>, este protocolo permite traducir las direcciones físicas (MAC) en direcciones lógicas (IP) que identifiquen nuestros dispositivos. Este traducción de direcciones es necesaria para operar posteriormente.</p>
 <p>Esta información queda almacenada en nuestro sistema, de forma que podemos consultarla en cualquier momento haciendo uso de la herramienta <em>arp</em></p>
-<pre><code>$ arp -e 
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ arp -e
 Address                  HWtype  HWaddress           Flags Mask            Iface
 10.0.2.1                 ether   52:54:00:12:35:00   C                     wlan0
 10.0.2.15                ether   08:00:27:7e:f5:47   C                     wlan0
-</code></pre>
-<p>Como podemos ver podemos consultar las direcciones físicas (HWaddress), relacionadas con cada dirección IP (Address). La información almacenada en esta tabla es esencial, puesto que cuando queremos enviar datos (paquetes) entre diferentes máquinas (nustra máquina local y un servidor web), se realizará mediante la dirección física, por lo que el sistema operativo consultará los datos almacenados en esta tabla.</p>
-<h4 id="que-sucede-si-no-esta-la-direccion-en-la-tabla-arp">¿Qué sucede si no esta la dirección en la tabla ARP?</h4>
+</pre></div>
+</td></tr></table>
+
+<p>Podemos consultar las direcciones físicas (HWaddress), relacionadas con cada dirección IP (Address). La información almacenada en esta tabla es esencial, puesto que cuando queremos enviar datos (paquetes) entre diferentes máquinas (nustra máquina local y un servidor web), se realizará mediante la dirección física, por lo que el sistema operativo consultará los datos almacenados en esta tabla.</p>
+<h4 id="que-sucede-si-no-esta-la-direccion-en-la-tabla-arp">¿Qué sucede si no esta la dirección en la tabla ARP?<a class="headerlink" href="#que-sucede-si-no-esta-la-direccion-en-la-tabla-arp" title="Permanent link">&para;</a></h4>
 <p>Cuando no encontramos una dirección en la tabla ARP, el sistema operativo envia un paquete ARP <em>request</em> preguntando <em>Who has 10.0.2.15?</em> hacia una dirección en concreto (dirección de broadcast), esto puede observarse examinando un paquete tipo request con Wirehark:</p>
 <p><img alt="Arp request" src="../img/arpRequest1.png" /></p>
 <p>Como podemos ver la dirección de destino del paquete es la dirección de broadcast (ff:ff:ff:ff:ff:ff). Por parte del protocolo ARP, se envía la siguiente información.</p>
@@ -582,63 +624,82 @@ Address                  HWtype  HWaddress           Flags Mask            Iface
 <p>Como se puede observar se indica la dirección ip destino, la dirección que queremos descubrir en la red.</p>
 <p>En caso de que dicha dirección exista, tendrá una dirección MAC asociada, por lo cual el protolo ARP recibirá respuesta con un paquete ARP tipo <em>reply</em> donde se encuentra la dirección física del dispositivo.</p>
 <p><img alt="Arp reply" src="../img/arpReply1.png" /></p>
-<p>Si la dirección ip a la cual estamos enviando el paquete <em>request</em> no se encuentra en la red, no obtenedremos respuesta por parte del protocolo ARP. </p>
+<p>Si la dirección ip a la cual estamos enviando el paquete <em>request</em> no se encuentra en la red, no obtenedremos respuesta por parte del protocolo ARP.</p>
 <p>Ententiendo como funciona el protocolo ARP, sería muy fácil llegar a la conclusión de que si enviamos paquetes a todas las direcciones posibles dentro de nuestra máscara de red, solo aquellas peticiones que tengan respuesta harán referencia a los dispositivos existentes en la red.</p>
-<h4 id="problemas-del-escaneo-arp">Problemas del escaneo ARP</h4>
+<h4 id="problemas-del-escaneo-arp">Problemas del escaneo ARP<a class="headerlink" href="#problemas-del-escaneo-arp" title="Permanent link">&para;</a></h4>
 <p>El principal problema que plantea un escaneo de tipo ARP es que genera mucho ruido en la red, de forma que puede ser detectado facilmente por cualquier detector de intrusos. Sin embargo, en el escenario en el que estamos se supone que no existen dichos mecanismos.</p>
-<p><strong>Como ejemplo del ruido generado en la red se deja a continuación un paquete .pcapg</strong> <img alt="Análisis de Wirehark" src="" /></p>
-<h2 id="capturando-trafico-de-red">Capturando  tráfico de red</h2>
+<p><strong>Como ejemplo del ruido generado en la red se deja a continuación un paquete .pcapg</strong> <img alt="Análisis de Wirehark" src="https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/networkExamples/arpScan.pcapng" /></p>
+<h2 id="capturando-trafico-de-red">Capturando  tráfico de red<a class="headerlink" href="#capturando-trafico-de-red" title="Permanent link">&para;</a></h2>
 <p>El siguiente paso a seguir cuando tenemos los objetivos descubiertos sería identificar cual es el dispositivo que nos interesa y comenzar a capturar tráfico del mismo. La finalidad de esta obtención de tráfico es conseguir información del objetivo, para posteriormente realizar ataques dirigidos.</p>
-<h3 id="capturando-trafico-de-un-dispositivo-arp-spoofing">Capturando tráfico de un dispositivo: ARP Spoofing</h3>
+<h3 id="capturando-trafico-de-un-dispositivo-arp-spoofing">Capturando tráfico de un dispositivo: ARP Spoofing<a class="headerlink" href="#capturando-trafico-de-un-dispositivo-arp-spoofing" title="Permanent link">&para;</a></h3>
 <p>Con los conocimientos explicados anteiormente sobre ARP, podemos entender perfectamente como funciona el ataque <em>arp spoofing</em>. Este ataque consiste en alterar la información almacenada en las tablas ARP del sistema, de forma que alteremos la dirección MAC del router para que apunte a nuestro equipo.</p>
 <p>Con esta modificación pretendemos hacer que cualquier paquete que envíe la víctima a internet, circule por nuestro equipo ( ya que nos encontramos entre su conexión y la del router), como consecuencia de dicha redirección de paquetes podemos realizar cualquier análisis o modificación de dicho paquete.</p>
 <p><img alt="Arp Spoofing" src="../img/arpSpoofing.png" /></p>
 <p>Como podemos ver en el esquema, la víctima se pensará que la dirección física del router es la nuestra (por lo tanto los paquetes serán enviados a nuestro equipo), posteriormente nosotros redireccionaremos dichos paquetes al router (o switch) pertinente. El retraso de los paquetes causado por dicha redirección es completamente irrelevante.</p>
-<h3 id="arp-spoofing-en-linux">Arp Spoofing en Linux</h3>
+<h3 id="arp-spoofing-en-linux">Arp Spoofing en Linux<a class="headerlink" href="#arp-spoofing-en-linux" title="Permanent link">&para;</a></h3>
 <p>Dentro de las diferentes distribuciones GNU/Linux tenemos diferentes herramientas para realizar ARP Spoofing, la más común es arpspoof, sin embargo, existen aplicaciones más completas como <em>ettercap</em> o <em>bettercap</em> que nos permiten realizar tareas más complejas de forma sencilla, como veremos posteriormente.</p>
 <p>Para realizar un ataque arp spoofing, el primer paso es activar la redirección de paquetes en nuestro equipo (para evitar así que la víctima pierda conectividad de red), para ello simplemente modificamos el archivo <em>/proc/sys/net/ipv4/ip_forward</em></p>
-<pre><code>$ echo 1 &gt; /proc/sys/net/ipv4/ip_forward
-</code></pre>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ echo 1 &amp;gt; /proc/sys/net/ipv4/ip_forward
+</pre></div>
+</td></tr></table>
+
 <p>Con esto tendremos activada la redirección de paquetes de forma temporal, una vez realizado este paso simplemente tenemos que ejecutar el comando arpspoof con las direcciones de la víctima y el router.</p>
-<pre><code>$ arpspoof -t 10.0.2.15 10.0.2.1
-</code></pre>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ arpspoof -t 10.0.2.15 10.0.2.1
+</pre></div>
+</td></tr></table>
+
 <p>De esta forma estamos enviando de forma constante paquetes <strong>arp reply</strong> informando de que la dirección MAC correspondiente a 10.0.2.1 (el router), corresponde con la de nuestro dispositivo (10.0.2.15). Cuando la víctima pregunte cual es la dirección física de (10.0.2.1) se encontrará con los paquetes que estamos enviando y automáticamente guardará la nuestra.</p>
-<p>Llegados a este punto abriendo un sniffer podemos observar el tráfico saliente de este dispositivo. Posteiormente podemos usar alguna herramienta como <em>Wireshark</em> para analizar el tráfico.</p>
-<p><strong>Ejemplo de captura de tráfico hacia páginas con cifrado SSL <a href="">SSL Capture.pcapng</a></strong></p>
-<h2 id="modificando-paquetes-de-red">Modificando paquetes de red</h2>
+<p>Llegados a este punto abriendo un sniffer podemos observar el tráfico saliente de este dispositivo. Posteriormente podemos usar alguna herramienta como <em>Wireshark</em> para analizar el tráfico.</p>
+<p><strong>Ejemplo de captura de tráfico hacia páginas con cifrado SSL <a href="https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/networkExamples/httpsConnection.pcapng">SSL Capture.pcapng</a></strong></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Para prevenir este ARP spoofing es posible introducir las entradas dentro de la tabla ARP de forma manual.</p>
+</div>
+<h2 id="modificando-paquetes-de-red">Modificando paquetes de red<a class="headerlink" href="#modificando-paquetes-de-red" title="Permanent link">&para;</a></h2>
 <p>Capturar tráfico saliente puede ser de gran ayuda para entender los protocolos que usa nuestro objetivo y en el caso de que se use un protocolo no seguro poder obtener credenciales que pueden ser reutilizadas, sin embargo, la mayoria de los protocolos que se utilizan suelen estar cifrados, es en este punto donde entra la modificación de paquetes.</p>
-<h3 id="bettercap-the-swiss-army-knife-for-80211">Bettercap: The Swiss Army knife for 802.11</h3>
+<h3 id="bettercap-the-swiss-army-knife-for-80211">Bettercap: The Swiss Army knife for 802.11<a class="headerlink" href="#bettercap-the-swiss-army-knife-for-80211" title="Permanent link">&para;</a></h3>
 <p>Bettercap es una herramienta que nació como evolución de <em>ettercap</em>, de forma que nos permite implementar mayor número de ataques facilitando mucho determindas labores (como la creación de un proxy http manual). Podemos realizar múltiples acciones mediantes los denomidamos <em>caplets</em>.</p>
 <p>Los <em>caplets</em> son fichers .cap que contienen instrucciones de bettercap, de forma que podemos realizar diferentes acciones almacenandolas todas ellas en un simple fichero (para su posterior reutilización)</p>
-<h4 id="dns-spoofing">DNS Spoofing</h4>
+<h4 id="dns-spoofing">DNS Spoofing<a class="headerlink" href="#dns-spoofing" title="Permanent link">&para;</a></h4>
 <p>Uno de los ataques que podemos realizar dentro de una red local consiste en la modificación de las peticiones DNS para que apunten a diferentes sitios web. Este ataque nos permite realizar ataques de phishing y obtener credenciales o redirigir a la víctima hacia un sitio con malware.</p>
 <p>Para realizar un ataque de DNS spoofing con Bettercap, en primer lugar necesitamos crear un fichero con el formato <em>hosts</em> para indicar las páginas que queremos redireccionar.</p>
-<pre><code class="hostsSpoofing">
-    10.0.2.15 google.com     
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    10.0.2.15 google.com
     10.0.2.15 facebook.com
     10.0.2.15  uco.es
-</code></pre>
+</pre></div>
+</td></tr></table>
 
-<p><a href="">hostsSpoofing</a></p>
 <p>De esta forma cualquier petición hacia estas direcciones será automaticamente redirigida a nuestro servidor. Posteriormente tendremos que realizar el caplet para ejecutar con Bettercap.</p>
-<pre><code class="dnsSpooging.cap">
-    set dns.spoof.hotst ./hostsDns
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    set dns.spoof.hotst ./hostsDns
     dns.spoof on
-</code></pre>
+</pre></div>
+</td></tr></table>
 
-<p><a href="">dnsSpoofing.cap</a></p>
 <p>Por último ejecutamos bettercap:</p>
-<pre><code>$ bettecap -caplet dns_spoofing.cap
-</code></pre>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ bettecap -caplet dns_spoofing.cap
+</pre></div>
+</td></tr></table>
+
 <p>Previamente a relaizar este ataque tendremos que haber realizado un arp spoofing (para poder modificar los paquetes). Podemos incluir dicho ataque dentro del fichero dnsSpoofing.cap con las siguientes modificaciones</p>
-<pre><code class="dnsSpooging.cap">    arp.spoof.targets 10.0.2.15
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    arp.spoof.targets 10.0.2.15
     arp.spoof on
     set dns.spoof.hotst ./hostsSpoofing
     dns.spoof on
+</pre></div>
+</td></tr></table>
 
-</code></pre>
-
-<p>En el caso de que queramos realizar el ataque en todo el segmento en el que nos encotramo, podemos obviar el parámetro <em>arp.spoof.targets</em></p>
+<p>En el caso de que queramos realizar el ataque en todo el segmento en el que nos encotramos, podemos obviar el parámetro <em>arp.spoof.targets</em></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Para asegurarnos de no ser víctimas de DNS spoofing tenemos que asegurarnos de que el certificado SSL de la página web sea correcto y verificado por una entidad certificadora válida.</p>
+<p>También es posible agregar seguridad a las consultas DNS como <a href="https://www.opendns.com/about/innovations/dnscrypt/">dnscrypt</a></p>
+</div>
                 
                   
                 
@@ -674,13 +735,13 @@ Address                  HWtype  HWaddress           Flags Mask            Iface
           </a>
         
         
-          <a href="../javascript/" title="POC: Inyectando Javscript Malicioso" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../javascript/" title="POC: Inyectando Javascript Malicioso" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                POC: Inyectando Javscript Malicioso
+                POC: Inyectando Javascript Malicioso
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -702,20 +763,15 @@ Address                  HWtype  HWaddress           Flags Mask            Iface
           Material for MkDocs</a>
       </div>
       
-        
-      
     </div>
   </div>
 </footer>
       
     </div>
     
-      <script src="../assets/javascripts/application.9e1f3b71.js"></script>
+      <script src="../assets/javascripts/application.d9aa80ab.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
-      
-    
-    
       
     
   </body>
