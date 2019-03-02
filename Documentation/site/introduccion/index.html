@@ -2,7 +2,7 @@
 
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="no-js">
   <head>
     
@@ -10,7 +10,11 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
+        <meta name="description" content="Análisis de las vulnerabilidades presentes en un entorno doméstico">
       
+      
+      
+        <meta name="author" content="Héctor Romero <i72roloh@uco.es>">
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -32,20 +36,20 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
     
     
       
-        <title>Introducción - Hacking Doméstico</title>
+        <title>Introducción - Seguridad en redes domésticas</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.11e41852.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application.982221ab.css">
       
       
     
     
-      <script src="../assets/javascripts/modernizr.20ef595d.js"></script>
+      <script src="../assets/javascripts/modernizr.1f0bcf2b.js"></script>
     
     
       
@@ -56,6 +60,9 @@
     
     <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
+    
+    
+      
     
     
   </head>
@@ -81,7 +88,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="Hacking Doméstico" class="md-header-nav__button md-logo">
+        <a href=".." title="Seguridad en redes domésticas" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -93,22 +100,19 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
-            
-              <span class="md-header-nav__topic">
-                Hacking Doméstico
-              </span>
-              <span class="md-header-nav__topic">
-                Introducción
-              </span>
-            
+            <span class="md-header-nav__topic">
+              Seguridad en redes domésticas
+            </span>
+            <span class="md-header-nav__topic">
+              Introducción
+            </span>
           
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -131,7 +135,6 @@
     </div>
   </div>
 </div>
-          
         
       </div>
       
@@ -153,12 +156,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href=".." title="Hacking Doméstico" class="md-nav__button md-logo">
+    <a href=".." title="Seguridad en redes domésticas" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    Hacking Doméstico
+    Seguridad en redes domésticas
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -169,8 +172,8 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Index" class="md-nav__link">
-      Index
+    <a href=".." title="Inicio" class="md-nav__link">
+      Inicio
     </a>
   </li>
 
@@ -206,6 +209,13 @@
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#disclaimer" title="Disclaimer" class="md-nav__link">
+    Disclaimer
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#cual-es-el-objetivo-del-la-presentacion" title="¿Cuál es el objetivo del la presentación?" class="md-nav__link">
@@ -293,8 +303,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../networkAttack/" title="Explorando la red interna" class="md-nav__link">
-      Explorando la red interna
+    <a href="../networkAttack/" title="Atacando la red interna" class="md-nav__link">
+      Atacando la red interna
     </a>
   </li>
 
@@ -305,8 +315,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../javascript/" title="POC: Inyectando Javscript Malicioso" class="md-nav__link">
-      POC: Inyectando Javscript Malicioso
+    <a href="../javascript/" title="POC: Inyectando Javascript Malicioso" class="md-nav__link">
+      POC: Inyectando Javascript Malicioso
     </a>
   </li>
 
@@ -330,6 +340,13 @@
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#disclaimer" title="Disclaimer" class="md-nav__link">
+    Disclaimer
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#cual-es-el-objetivo-del-la-presentacion" title="¿Cuál es el objetivo del la presentación?" class="md-nav__link">
@@ -369,12 +386,14 @@
               
                 
                 
-                <h1 id="introduccion">Introducción</h1>
-<h2 id="cual-es-el-objetivo-del-la-presentacion">¿Cuál es el objetivo del la presentación?</h2>
+                <h1 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h1>
+<h2 id="disclaimer">Disclaimer<a class="headerlink" href="#disclaimer" title="Permanent link">&para;</a></h2>
+<p>Todo el material que se expone a continuación (página web, laboratorios y presentación) esta realizada con fines educativos. No tiene como finalidad incitar al delito. </p>
+<h2 id="cual-es-el-objetivo-del-la-presentacion">¿Cuál es el objetivo del la presentación?<a class="headerlink" href="#cual-es-el-objetivo-del-la-presentacion" title="Permanent link">&para;</a></h2>
 <p>El objetivo es enumerar las posibles vulnerabilidades que podemos apreciar en un hogar corriente. Se planetea un escenario en el cuál se prentende recolectar información de un usuario concreto dentro de un núcleo familiar.</p>
-<h2 id="que-contenido-encontramos-en-esta-pagina">¿Qué contenido encontramos en esta página?</h2>
+<h2 id="que-contenido-encontramos-en-esta-pagina">¿Qué contenido encontramos en esta página?<a class="headerlink" href="#que-contenido-encontramos-en-esta-pagina" title="Permanent link">&para;</a></h2>
 <p>Los ataques que se mencionan en la presentación en mayor profundidad. Se mostrarán como hacerlos de forma manual así como las herramientas existentes para automatizarlos, sin olvidar la parte de detección de dichos ataques en una red local.</p>
-<h2 id="material-usado-durante-la-presentacion">Material usado durante la presentación</h2>
+<h2 id="material-usado-durante-la-presentacion">Material usado durante la presentación<a class="headerlink" href="#material-usado-durante-la-presentacion" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Máquinas virtuales<ol>
 <li>Kali Linux o BlackArch como sistemas atacantes</li>
@@ -405,7 +424,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href=".." title="Index" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href=".." title="Inicio" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -414,7 +433,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Index
+                Inicio
               </span>
             </div>
           </a>
@@ -448,20 +467,15 @@
           Material for MkDocs</a>
       </div>
       
-        
-      
     </div>
   </div>
 </footer>
       
     </div>
     
-      <script src="../assets/javascripts/application.9e1f3b71.js"></script>
+      <script src="../assets/javascripts/application.d9aa80ab.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
-      
-    
-    
       
     
   </body>
