@@ -41,4 +41,4 @@ Como alternativa para este escenario hemos decidio utilizar una biblioteca de Py
 
 En escenarios mas complejos, podemos utilizar librerias de procesamiento de lenguaje natural (NTPL) entre otras para poder extraer la máxima información posible, sin embargo, para este ejemplo las obviaremos.
 
-[Script monitorización Twitter]()
+[Script monitorización Twitter](https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/twitterMonitor.py)

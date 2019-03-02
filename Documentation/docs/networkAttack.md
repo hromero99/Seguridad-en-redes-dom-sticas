@@ -1,4 +1,4 @@
-# Ataques en la red interna 
+# Ataques en la red interna
 
 Una vez que estamos dentro de la red wifi, nos encontramos ante un escenario totalmente diferente al anterior. Tenemos que realizar descubrimiento de equipos, comprobar configuraciones por defecto, explorar vulnerabilidades del hardware de red, entre una larga lista de tareas. Dicho esto comencemos por el primer paso: _descubrimiento de objetivos_
 
@@ -12,7 +12,7 @@ Al obtener una dirección ip automáticamente (como consecuencia del servidor DH
 
 El primer paso sería obtener determinada información de la red, para ello podemos utilizar las herramientas que nos proporiciona nuestro sistema GNU/Linux, concretamente  _route_
 
-    $ route 
+    $ route
 
     Kernel IP routing table
     Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
@@ -24,7 +24,7 @@ Generalmente el comando _route_ nos mostrará algo similar a lo anterior. Dentro
 
 * Puerta de enlace (Gateway): Esta dirección nos permitirá saber mediante que dispositivo estamos saliendo a Internet
 * Máscara de red: Nos permitirá determinar en que tipo de red estamos trabajando (Tipo A,B,C)
- 
+
 Esta información nos permitirá posteriormente realizar un escaneo de la red en busca de dispositivos.
 
 !!! warning
@@ -58,7 +58,7 @@ El protocolo ARP (Address Resolution Protocol) es un protoclo que trabaja en la 
 
 Esta información queda almacenada en nuestro sistema, de forma que podemos consultarla en cualquier momento haciendo uso de la herramienta _arp_
 
-    $ arp -e 
+    $ arp -e
     Address                  HWtype  HWaddress           Flags Mask            Iface
     10.0.2.1                 ether   52:54:00:12:35:00   C                     wlan0
     10.0.2.15                ether   08:00:27:7e:f5:47   C                     wlan0
@@ -81,14 +81,14 @@ En caso de que dicha dirección exista, tendrá una dirección MAC asociada, por
 
 ![Arp reply](img/arpReply1.png)
 
-Si la dirección ip a la cual estamos enviando el paquete _request_ no se encuentra en la red, no obtenedremos respuesta por parte del protocolo ARP. 
+Si la dirección ip a la cual estamos enviando el paquete _request_ no se encuentra en la red, no obtenedremos respuesta por parte del protocolo ARP.
 
 Ententiendo como funciona el protocolo ARP, sería muy fácil llegar a la conclusión de que si enviamos paquetes a todas las direcciones posibles dentro de nuestra máscara de red, solo aquellas peticiones que tengan respuesta harán referencia a los dispositivos existentes en la red.
 
 #### Problemas del escaneo ARP
 El principal problema que plantea un escaneo de tipo ARP es que genera mucho ruido en la red, de forma que puede ser detectado facilmente por cualquier detector de intrusos. Sin embargo, en el escenario en el que estamos se supone que no existen dichos mecanismos.
 
-__Como ejemplo del ruido generado en la red se deja a continuación un paquete .pcapg__ ![Análisis de Wirehark]()
+__Como ejemplo del ruido generado en la red se deja a continuación un paquete .pcapg__ ![Análisis de Wirehark](https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/networkExamples/arpScan.pcapng)
 
 ## Capturando  tráfico de red
 
@@ -120,7 +120,7 @@ De esta forma estamos enviando de forma constante paquetes __arp reply__ informa
 
 Llegados a este punto abriendo un sniffer podemos observar el tráfico saliente de este dispositivo. Posteriormente podemos usar alguna herramienta como _Wireshark_ para analizar el tráfico.
 
-__Ejemplo de captura de tráfico hacia páginas con cifrado SSL [SSL Capture.pcapng]()__
+__Ejemplo de captura de tráfico hacia páginas con cifrado SSL [SSL Capture.pcapng](https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/networkExamples/httpsConnection.pcapng)__
 
 
 !!! info
@@ -144,12 +144,12 @@ Uno de los ataques que podemos realizar dentro de una red local consiste en la m
 Para realizar un ataque de DNS spoofing con Bettercap, en primer lugar necesitamos crear un fichero con el formato _hosts_ para indicar las páginas que queremos redireccionar.
 
 ```hostsSpoofing
- 
-	10.0.2.15 google.com	 
+
+	10.0.2.15 google.com
 	10.0.2.15 facebook.com
 	10.0.2.15  uco.es
 ```
-[hostsSpoofing]()
+
 
 De esta forma cualquier petición hacia estas direcciones será automaticamente redirigida a nuestro servidor. Posteriormente tendremos que realizar el caplet para ejecutar con Bettercap.
 
@@ -158,10 +158,9 @@ De esta forma cualquier petición hacia estas direcciones será automaticamente 
 	set dns.spoof.hotst ./hostsDns
 	dns.spoof on
 ```
-[dnsSpoofing.cap]()
 
 Por último ejecutamos bettercap:
-	
+
 	$ bettecap -caplet dns_spoofing.cap
 
 Previamente a relaizar este ataque tendremos que haber realizado un arp spoofing (para poder modificar los paquetes). Podemos incluir dicho ataque dentro del fichero dnsSpoofing.cap con las siguientes modificaciones
@@ -179,4 +178,3 @@ En el caso de que queramos realizar el ataque en todo el segmento en el que nos 
     Para asegurarnos de no ser víctimas de DNS spoofing tenemos que asegurarnos de que el certificado SSL de la página web sea correcto y verificado por una entidad certificadora válida.
 
     También es posible agregar seguridad a las consultas DNS como [dnscrypt](https://www.opendns.com/about/innovations/dnscrypt/)
-

